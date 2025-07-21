@@ -3,11 +3,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { VenuesModule } from './venues/venues.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import dotenv from 'dotenv';
+import 'dotenv/config';
 import * as process from 'node:process';
 import { Venue } from './venues/venue.entity';
-
-dotenv.config();
 
 @Module({
   imports: [

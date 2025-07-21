@@ -3,11 +3,11 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm/repository/Repository';
 import { Venue } from '../venue.entity';
 import { CreateVenueDto } from '../dtos/create-venue.dto';
-
+import { GetVenueDto } from '../dtos/get-venue.dto';
 
 @Injectable()
 export class VenuesService {
-  // This service can be expanded with methods to handle venue-related logic
+  // This service can be expanded with methods to handle venue-related logic,
   // For example, methods to create, update, delete, or retrieve venues
 
   constructor(
@@ -17,7 +17,12 @@ export class VenuesService {
 
   /* Create a new venue */
   public async createVenue(createVenueDto: CreateVenueDto) {
-    const venue = await this.venueRepository.create(createVenueDto);
+    const venue = this.venueRepository.create(createVenueDto);
     return this.venueRepository.save(venue);
+  }
+
+  /* Get all venues */
+  public async getVenues(): Promise<GetVenueDto[]> {
+    return this.venueRepository.find();
   }
 }
