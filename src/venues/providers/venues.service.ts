@@ -16,8 +16,8 @@ export class VenuesService {
   ) {}
 
   /* Create a new venue */
-  createVenue(createVenueDto: CreateVenueDto) {
-    const venue = this.venueRepository.create(createVenueDto);
+  public async createVenue(createVenueDto: CreateVenueDto) {
+    const venue = await this.venueRepository.create(createVenueDto);
     return this.venueRepository.save(venue);
   }
 }
