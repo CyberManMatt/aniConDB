@@ -3,10 +3,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { VenuesModule } from './venues/venues.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import dotenv from 'dotenv';
+import 'dotenv/config';
 import * as process from 'node:process';
-
-dotenv.config();
+import { Venue } from './venues/venue.entity';
 
 @Module({
   imports: [
@@ -16,7 +15,7 @@ dotenv.config();
       inject: [],
       useFactory: () => ({
         type: 'postgres',
-        entities: [],
+        entities: [Venue],
         synchronize: true,
         port: 5432,
         host: 'localhost',
