@@ -3,6 +3,7 @@ import {
   IsPhoneNumber,
   IsPostalCode,
   IsOptional,
+  IsUrl,
 } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
@@ -28,7 +29,7 @@ export class CreateVenueDto {
   stateProv: string;
 
   @ApiProperty({ description: 'The zip code of the venue' })
-  @IsPostalCode()
+  @IsPostalCode('US')
   @IsNotEmpty()
   zip: string;
 
@@ -37,12 +38,13 @@ export class CreateVenueDto {
   country: string;
 
   @ApiPropertyOptional({ description: 'The phone number of the venue' })
-  @IsPhoneNumber()
+  @IsPhoneNumber('US')
   @IsOptional()
   phone: string;
 
   @ApiPropertyOptional({ description: 'The website of the venue' })
   @IsOptional()
+  @IsUrl()
   website: string;
 
   @ApiPropertyOptional({ description: 'Whether the venue has a food court' })
