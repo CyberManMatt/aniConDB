@@ -1,39 +1,85 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { VenuesService } from './providers/venues.service';
 import { CreateVenueDto } from './dtos/create-venue.dto';
 import { PatchVenueDto } from './dtos/patch-venue.dto';
-import { GetVenueDto } from './dtos/get-venue.dto';
+import { ApiOkResponse, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { GetVenuesDto } from './dtos/get-venues.dto';
 
 @Controller('venues')
 export class VenuesController {
-    // This controller can be expanded with methods to handle HTTP requests
-    // For example, methods to create, update, delete, or retrieve venues
+  // This controller can be expanded with methods to handle HTTP requests,
+  // For example, methods to create, update, delete, or retrieve venues
 
-    // The VenuesService can be injected here to handle business logic
-    constructor(private readonly venuesService: VenuesService) {}
+  // The VenuesService can be injected here to handle business logic
+  constructor(private readonly venuesService: VenuesService) {}
 
-    @Post()
-    public createVenue(@Body() createVenueDto: CreateVenueDto) {
-        return this.venuesService.createVenue(createVenueDto);
-    }
+  @Post()
+  @ApiResponse({
+    status: 201,
+    description: 'The record has been successfully created.',
+  })
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 400, description: 'Bad Request.' })
+  @ApiOperation({ summary: 'Create a new venue' })
+  public createVenue(@Body() createVenueDto: CreateVenueDto) {
+    return this.venuesService.createVenue(createVenueDto);
+  }
 
-    @Get()
-    public getVenues() {
-        return this.venuesService.getVenues();
-    }
+  @Get()
+  @ApiOkResponse({
+    type: [CreateVenueDto],
+    description: 'The record has been successfully retrieved.',
+  })
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiOperation({ summary: 'Get all venues' })
+  public getVenues() {
+    return this.venuesService.getVenues();
+  }
 
-    @Get(':id')
-    public getVenueById(@Param('id') id: number) {
-        return this.venuesService.getVenueById(id);
-    }
+  @Get(':id')
+  @ApiOkResponse({
+    type: GetVenuesDto,
+    description: 'The record has been successfully retrieved.',
+  })
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 404, description: 'Not Found.' })
+  @ApiOperation({ summary: 'Get a venue by ID' })
+  public getVenueById(@Param('id') id: number) {
+    return this.venuesService.getVenueById(id);
+  }
 
-    @Patch()
-    public updateVenue(@Param('id') id: number, @Body() updateVenueDto: PatchVenueDto) {
-        return this.venuesService.updateVenue(id, updateVenueDto);
-    }
+  @Patch()
+  @ApiResponse({
+    status: 200,
+    description: 'The record has been successfully updated.',
+  })
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 404, description: 'Not Found.' })
+  @ApiOperation({ summary: 'Update a venue' })
+  public updateVenue(
+    @Param('id') id: number,
+    @Body() updateVenueDto: PatchVenueDto,
+  ) {
+    return this.venuesService.updateVenue(id, updateVenueDto);
+  }
 
-    @Delete()
-    public deleteVenue(@Param('id') id: number) {
-        return this.venuesService.deleteVenue(id);
-    }
+  @Delete()
+  @ApiResponse({
+    status: 204,
+    description: 'The record has been successfully deleted.',
+  })
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @ApiResponse({ status: 404, description: 'Not Found.' })
+  @ApiOperation({ summary: 'Delete a venue' })
+  public deleteVenue(@Param('id') id: number) {
+    return this.venuesService.deleteVenue(id);
+  }
 }

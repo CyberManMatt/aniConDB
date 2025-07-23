@@ -1,4 +1,4 @@
-import { PartialType } from '@nestjs/mapped-types';
 import { CreateVenueDto } from './create-venue.dto';
+import { PartialType } from '@nestjs/swagger';
 
-export class PatchVenueDto extends CreateVenueDto {}
+export class PatchVenueDto extends PartialType(CreateVenueDto) {}

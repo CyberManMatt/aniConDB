@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm/repository/Repository';
 import { Venue } from '../venue.entity';
 import { CreateVenueDto } from '../dtos/create-venue.dto';
-import { GetVenueDto } from '../dtos/get-venue.dto';
+import { GetVenuesDto } from '../dtos/get-venues.dto';
 import { NotFoundException } from '@nestjs/common';
 import { PatchVenueDto } from '../dtos/patch-venue.dto';
 
@@ -24,13 +24,12 @@ export class VenuesService {
   }
 
   /* Get all venues */
-  public async getVenues(): Promise<GetVenueDto[]> {
+  public async getVenues(): Promise<Venue[]> {
     return this.venueRepository.find();
   }
 
-
   /* Get a venue by ID */
-  public async getVenueById(id: number): Promise<GetVenueDto> {
+  public async getVenueById(id: number): Promise<Venue> {
     const venue = await this.venueRepository.findOneBy({ id });
     if (!venue) {
       throw new NotFoundException(`Venue with id ${id} not found`);
@@ -38,14 +37,15 @@ export class VenuesService {
     return venue;
   }
 
-
   /* Update a venue */
-  public async updateVenue(id: number, updateVenueDto: PatchVenueDto): Promise<GetVenueDto> {
+  public async updateVenue(
+    id: number,
+    updateVenueDto: PatchVenueDto,
+  ): Promise<GetVenuesDto> {
     const venue = await this.getVenueById(id);
     Object.assign(venue, updateVenueDto);
     return this.venueRepository.save(venue);
   }
-
 
   /* Delete a venue */
   public async deleteVenue(id: number): Promise<void> {
