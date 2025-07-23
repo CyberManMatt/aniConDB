@@ -12,6 +12,7 @@ import { CreateVenueDto } from './dtos/create-venue.dto';
 import { PatchVenueDto } from './dtos/patch-venue.dto';
 import { ApiOkResponse, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { GetVenuesDto } from './dtos/get-venues.dto';
+import { GetVenueDetailDto } from './dtos/get-venue-detail.dto';
 
 @Controller('venues')
 export class VenuesController {
@@ -35,7 +36,7 @@ export class VenuesController {
 
   @Get()
   @ApiOkResponse({
-    type: [CreateVenueDto],
+    type: [GetVenuesDto],
     description: 'The record has been successfully retrieved.',
   })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -46,7 +47,7 @@ export class VenuesController {
 
   @Get(':id')
   @ApiOkResponse({
-    type: GetVenuesDto,
+    type: [GetVenueDetailDto],
     description: 'The record has been successfully retrieved.',
   })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
@@ -56,7 +57,7 @@ export class VenuesController {
     return this.venuesService.getVenueById(id);
   }
 
-  @Patch()
+  @Patch(':id')
   @ApiResponse({
     status: 200,
     description: 'The record has been successfully updated.',
