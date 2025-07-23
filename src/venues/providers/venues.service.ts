@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm/repository/Repository';
 import { Venue } from '../venue.entity';
 import { CreateVenueDto } from '../dtos/create-venue.dto';
-import { GetVenuesDto } from '../dtos/get-venues.dto';
 import { NotFoundException } from '@nestjs/common';
 import { PatchVenueDto } from '../dtos/patch-venue.dto';
 import { GetVenueDetailDto } from '../dtos/get-venue-detail.dto';
@@ -43,10 +42,21 @@ export class VenuesService {
   public async updateVenue(
     id: number,
     updateVenueDto: PatchVenueDto,
-  ): Promise<PatchVenueDto> {
-    const venue = await this.getVenueById(id);
-    Object.assign(venue, updateVenueDto);
-    return this.venueRepository.save(venue);
+  ): Promise<GetVenueDetailDto> {
+    const venue = await this.venueRepository.findOneBy({ id });
+
+    if (!venue) {
+      throw new NotFoundException(`Venue with id ${id} not found`);
+    }
+
+    try {
+      Object.assign(venue, updateVenueDto);
+      const updatedVenue = await this.venueRepository.save(venue);
+      return plainToInstance(GetVenueDetailDto, updatedVenue);
+    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      throw new Error(`Error updating venue: ${error.message}`);
+    }
   }
 
   /* Delete a venue */

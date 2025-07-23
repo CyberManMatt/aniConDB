@@ -57,7 +57,7 @@ export class VenuesController {
     return this.venuesService.getVenueById(id);
   }
 
-  @Patch()
+  @Patch(':id')
   @ApiResponse({
     status: 200,
     description: 'The record has been successfully updated.',
