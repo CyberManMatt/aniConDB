@@ -6,6 +6,8 @@ import { CreateVenueDto } from '../dtos/create-venue.dto';
 import { GetVenuesDto } from '../dtos/get-venues.dto';
 import { NotFoundException } from '@nestjs/common';
 import { PatchVenueDto } from '../dtos/patch-venue.dto';
+import { GetVenueDetailDto } from '../dtos/get-venue-detail.dto';
+import { plainToInstance } from 'class-transformer';
 
 @Injectable()
 export class VenuesService {
@@ -29,19 +31,19 @@ export class VenuesService {
   }
 
   /* Get a venue by ID */
-  public async getVenueById(id: number): Promise<Venue> {
+  public async getVenueById(id: number): Promise<GetVenueDetailDto> {
     const venue = await this.venueRepository.findOneBy({ id });
     if (!venue) {
       throw new NotFoundException(`Venue with id ${id} not found`);
     }
-    return venue;
+    return plainToInstance(GetVenueDetailDto, venue);
   }
 
   /* Update a venue */
   public async updateVenue(
     id: number,
     updateVenueDto: PatchVenueDto,
-  ): Promise<GetVenuesDto> {
+  ): Promise<PatchVenueDto> {
     const venue = await this.getVenueById(id);
     Object.assign(venue, updateVenueDto);
     return this.venueRepository.save(venue);
@@ -49,7 +51,10 @@ export class VenuesService {
 
   /* Delete a venue */
   public async deleteVenue(id: number): Promise<void> {
-    const venue = await this.getVenueById(id);
+    const venue = await this.venueRepository.findOneBy({ id });
+    if (!venue) {
+      throw new NotFoundException(`Venue with id ${id} not found`);
+    }
     await this.venueRepository.remove(venue);
   }
 }
