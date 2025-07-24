@@ -1,5 +1,5 @@
-import { Entity } from "typeorm";
-import { PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity } from 'typeorm';
+import { PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 export class Venue {
@@ -39,4 +39,3 @@ export class Venue {
   @Column()
   foodCourt: boolean;
 }
-
