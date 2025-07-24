@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import 'dotenv/config';
 import * as process from 'node:process';
 import { Venue } from './venues/venue.entity';
+import { ConventionsModule } from './conventions/conventions.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { Venue } from './venues/venue.entity';
         database: process.env.POSTGRES_DB,
       }),
     }),
+    ConventionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
