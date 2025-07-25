@@ -1,4 +1,3 @@
-import { Convention } from 'src/conventions/convention.entity';
 import { Entity } from 'typeorm';
 import { PrimaryGeneratedColumn, Column } from 'typeorm';
 

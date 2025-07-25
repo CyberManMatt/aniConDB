@@ -1,6 +1,5 @@
 import { IsISO8601, IsNotEmpty, IsOptional, IsUrl } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { Venue } from 'src/venues/venue.entity';
 import { CreateVenueDto } from 'src/venues/dtos/create-venue.dto';
 
 export class CreateConDto {
