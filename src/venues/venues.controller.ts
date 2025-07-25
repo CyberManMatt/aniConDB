@@ -72,7 +72,7 @@ export class VenuesController {
     return this.venuesService.updateVenue(id, updateVenueDto);
   }
 
-  @Delete()
+  @Delete(':id')
   @ApiResponse({
     status: 204,
     description: 'The record has been successfully deleted.',

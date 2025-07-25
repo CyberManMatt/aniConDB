@@ -3,7 +3,7 @@ import { PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 export class Venue {
-  // Define properties of the Venue entity here
+  // Define properties of the Venue entity here,
   // For example, id, name, location, etc.
 
   @PrimaryGeneratedColumn()
@@ -15,27 +15,24 @@ export class Venue {
   @Column()
   address1: string;
 
-  @Column()
+  @Column({ nullable: true })
   address2: string;
 
   @Column()
   city: string;
 
   @Column()
-  stateProv: string;
+  state: string;
 
   @Column()
   zip: string;
 
-  @Column()
-  country: string;
-
-  @Column()
+  @Column({ nullable: true })
   phone: string;
 
-  @Column()
+  @Column({ nullable: true })
   website: string;
 
-  @Column()
+  @Column({ nullable: true })
   foodCourt: boolean;
 }
