@@ -1,21 +1,23 @@
 import { IsISO8601, IsNotEmpty, IsOptional, IsUrl } from 'class-validator';
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { Venue } from 'src/venues/venue.entity';
+import { CreateVenueDto } from 'src/venues/dtos/create-venue.dto';
 
 export class CreateConDto {
   @ApiProperty({ description: 'The name of the convention' })
   @IsNotEmpty()
   name: string;
 
-  @ApiProperty({ description: 'The description of the convention' })
+  @ApiPropertyOptional({ description: 'The description of the convention' })
   @IsOptional()
   description: string;
 
-  @ApiProperty({ description: 'The image or logo of the convention' })
+  @ApiPropertyOptional({ description: 'The image or logo of the convention' })
   @IsUrl({ require_protocol: true })
   @IsOptional()
   image: string;
 
-  @ApiProperty({ description: 'The alt text of the image or logo' })
+  @ApiPropertyOptional({ description: 'The alt text of the image or logo' })
   @IsOptional()
   image_alt: string;
 
@@ -29,12 +31,12 @@ export class CreateConDto {
   @IsISO8601()
   endDate: Date;
 
-  @ApiProperty({ description: 'The website of the convention' })
+  @ApiPropertyOptional({ description: 'The website of the convention' })
   @IsOptional()
   @IsUrl()
   webpage: string;
 
   @ApiProperty({ description: 'The venue ID of the convention' })
   @IsNotEmpty()
-  venueId: number;
+  venue: CreateVenueDto;
 }

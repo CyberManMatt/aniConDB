@@ -7,16 +7,18 @@ import 'dotenv/config';
 import * as process from 'node:process';
 import { Venue } from './venues/venue.entity';
 import { ConventionsModule } from './conventions/conventions.module';
+import { Convention } from './conventions/convention.entity';
 
 @Module({
   imports: [
     VenuesModule,
+    ConventionsModule,
     TypeOrmModule.forRootAsync({
       imports: [],
       inject: [],
       useFactory: () => ({
         type: 'postgres',
-        entities: [Venue],
+        entities: [Venue, Convention],
         synchronize: true,
         port: 5432,
         host: 'localhost',
@@ -25,7 +27,6 @@ import { ConventionsModule } from './conventions/conventions.module';
         database: process.env.POSTGRES_DB,
       }),
     }),
-    ConventionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

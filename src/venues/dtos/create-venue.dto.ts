@@ -26,16 +26,12 @@ export class CreateVenueDto {
 
   @ApiProperty({ description: 'The state or province of the venue' })
   @IsNotEmpty()
-  stateProv: string;
+  state: string;
 
   @ApiProperty({ description: 'The zip code of the venue' })
   @IsPostalCode('US')
   @IsNotEmpty()
   zip: string;
-
-  @ApiProperty({ description: 'The country of the venue' })
-  @IsNotEmpty()
-  country: string;
 
   @ApiPropertyOptional({ description: 'The phone number of the venue' })
   @IsPhoneNumber('US')

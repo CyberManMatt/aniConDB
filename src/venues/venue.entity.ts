@@ -1,3 +1,4 @@
+import { Convention } from 'src/conventions/convention.entity';
 import { Entity } from 'typeorm';
 import { PrimaryGeneratedColumn, Column } from 'typeorm';
 
@@ -15,27 +16,24 @@ export class Venue {
   @Column()
   address1: string;
 
-  @Column()
+  @Column({ nullable: true })
   address2: string;
 
   @Column()
   city: string;
 
   @Column()
-  stateProv: string;
+  state: string;
 
   @Column()
   zip: string;
 
-  @Column()
-  country: string;
-
-  @Column()
+  @Column({ nullable: true })
   phone: string;
 
-  @Column()
+  @Column({ nullable: true })
   website: string;
 
-  @Column()
+  @Column({ nullable: true })
   foodCourt: boolean;
 }
