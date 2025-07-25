@@ -3,7 +3,7 @@ import { PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 export class Venue {
-  // Define properties of the Venue entity here
+  // Define properties of the Venue entity here,
   // For example, id, name, location, etc.
 
   @PrimaryGeneratedColumn()
