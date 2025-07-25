@@ -4,33 +4,33 @@ import { PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 export class Convention {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    name: string;
+  @Column()
+  name: string;
 
-    @Column({ nullable: true })
-    description: string;
+  @Column({ nullable: true })
+  description: string;
 
-    @Column({ nullable: true })
-    image: string;
+  @Column({ nullable: true })
+  image: string;
 
-    @Column({ nullable: true })
-    image_alt: string;
+  @Column({ nullable: true })
+  image_alt: string;
 
-    @Column()
-    startDate: Date;
+  @Column()
+  startDate: Date;
 
-    @Column()
-    endDate: Date;
+  @Column()
+  endDate: Date;
 
-    @Column({ nullable: true })
-    webpage: string;
+  @Column({ nullable: true })
+  webpage: string;
 
-    @OneToOne(() => Venue, { eager: true })
-    @JoinColumn()
-    venue: Venue;
+  @OneToOne(() => Venue, { eager: true })
+  @JoinColumn()
+  venue: Venue;
 
   // Additional properties and methods can be added as needed
 }
