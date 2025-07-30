@@ -1,0 +1,1 @@
+export const REQUEST_USER_KEY = 'user'; // Key to attach user information to the request object
