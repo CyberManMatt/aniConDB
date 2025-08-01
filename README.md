@@ -23,8 +23,17 @@ docker run -p 5432:5432 \
     postgres
 ```
 
-### Make a `.env` file
-At the root of the project, create a `.env` file. The `.example.env` file is there to provide a reference.
+### Make a `.env.development` file
+At the root of the project, create a `.env.development` file. The `.example.env` file is there to provide a reference. For the `JWT_SECRET` entry, you can generate a JWT secret key [at this website](https://jwtsecrets.com/).
+
+The required environment variables are:
+- `POSTGRES_PASSWORD`
+- `JWT_SECRET`
+
+The default user name for Postgres is `anicondbdev`
+
+### Run the development server
+Run `npm run start:dev` in the terminal to run the development server. If you are using VS Code, you can Run and Debug the "Run dev server" setup.
 
 ### Start coding
 Put your code in writing and commit!
@@ -36,6 +45,5 @@ Push your code to your forked repository
 Open a pull request from your forked repository to the main repository (`origin/main`)
 
 ## How to Use
-aniConDB is an API currently in development. To use the API, run the project with `npm start` or `npm start:dev`. You can use Postman or any other software to access the endpoints.
+After running the development server, create an account with the `POST /users` endpoint. After creating an account, sign in by using the `POST /auth/sign-in` endpoint. After signing in, you should get an `accessToken` in return. This token is your Authorization token that you need to include in the header of your requests of all other endpoints.
 
-Alternatively, you can go to `localhost:3000/docs` while the project is running to access the Swagger Docs to access the endpoints there.
