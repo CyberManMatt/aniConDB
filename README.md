@@ -32,6 +32,9 @@ The required environment variables are:
 
 The default user name for Postgres is `anicondbdev`
 
+### Run the development server
+Run `npm run start:dev` in the terminal to run the development server. If you are using VS Code, you can Run and Debug the "Run dev server" setup.
+
 ### Start coding
 Put your code in writing and commit!
 
@@ -42,7 +45,5 @@ Push your code to your forked repository
 Open a pull request from your forked repository to the main repository (`origin/main`)
 
 ## How to Use
-aniConDB is an API currently in development. To use the API, run the project with `npm start:dev`. You can use Postman or any other software to access the endpoints. Be sure that your database is also running, or you will get an error.
-
-Alternatively, you can go to `localhost:3000/docs` in a web browser while the project is running to access the Swagger Docs to access the endpoints there.
+After running the development server, create an account with the `POST /users` endpoint. After creating an account, sign in by using the `POST /auth/sign-in` endpoint. After signing in, you should get an `accessToken` in return. This token is your Authorization token that you need to include in the header of your requests of all other endpoints.
 

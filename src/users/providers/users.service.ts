@@ -1,4 +1,4 @@
-import { forwardRef, Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, forwardRef, Inject, Injectable, RequestTimeoutException } from '@nestjs/common';
 import { User } from '../user.entity';
 import { Repository } from 'typeorm/repository/Repository';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -29,8 +29,25 @@ export class UsersService {
   public createUser(createUserDto: CreateUserDto) {
     return this.createUserProvider.createUser(createUserDto);
   }
+  
   public getAllUsers() {}
-  public getUserById() {}
+
+  public async getUserById(id: number) {
+    let user
+    
+    try {
+      user = await this.userRepository.findOneBy({id});
+    } catch (e) {
+      throw new RequestTimeoutException(e, {description: 'Error connecting to the the datbase'})
+    }
+
+    if (!user) {
+      throw new BadRequestException(`User with id ${id} not found`);
+    }
+
+    return user;
+  }
+
   public async getUserByEmail(email: string) {
     return this.findByEmailProvider.findByEmail(email);
   }

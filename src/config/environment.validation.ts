@@ -1,3 +1,4 @@
+import { JwtModule } from '@nestjs/jwt';
 import * as Joi from 'joi';
 
 export default Joi.object({
@@ -14,5 +15,6 @@ export default Joi.object({
   JWT_SECRET: Joi.string().required(),
   JWT_TOKEN_AUDIENCE: Joi.string().required(),
   JWT_TOKEN_ISSUER: Joi.string().required(),
-  JWT_ACCESS_TOKEN_TTL: Joi.string().required().default('15m'),
+  JWT_ACCESS_TOKEN_TTL: Joi.number().required().default(3600), // Default to 1 hour
+  JWT_REFRESH_TOKEN_TTL: Joi.number().required().default(604800), // Default to 7 days
 });
