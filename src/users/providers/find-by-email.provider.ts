@@ -21,7 +21,6 @@ export class FindByEmailProvider {
       user = await this.usersRepository.findOneBy({ email: email });
     } catch (e) {
       throw new RequestTimeoutException('Database request timed out', {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
         description: e.message,
       });
     }

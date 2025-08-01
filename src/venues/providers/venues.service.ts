@@ -54,7 +54,6 @@ export class VenuesService {
       const updatedVenue = await this.venueRepository.save(venue);
       return plainToInstance(GetVenueDetailDto, updatedVenue);
     } catch (error) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       throw new Error(`Error updating venue: ${error.message}`);
     }
   }

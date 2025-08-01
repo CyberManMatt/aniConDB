@@ -49,7 +49,6 @@ export class ConventionsService {
       Object.assign(convention, updateConventionDto);
       return this.conventionRepository.save(convention);
     } catch (error) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       throw new Error(`Error updating convention: ${error.message}`);
     }
   }

@@ -28,7 +28,6 @@ export class CreateUserProvider {
       .hashPassword(password)
       .catch((error) => {
         throw new RequestTimeoutException('Password hashing timed out', {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
           description: error.message,
         });
       });
@@ -39,7 +38,6 @@ export class CreateUserProvider {
       });
     } catch (error) {
       throw new RequestTimeoutException('Database request timed out', {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
         description: error.message,
       });
     }
@@ -59,7 +57,6 @@ export class CreateUserProvider {
       newUser = await this.userRepository.save(newUser);
     } catch (error) {
       throw new RequestTimeoutException('Database request timed out', {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access
         description: error.message,
       });
     }
