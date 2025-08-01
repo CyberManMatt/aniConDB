@@ -1,4 +1,3 @@
-import { JwtModule } from '@nestjs/jwt';
 import * as Joi from 'joi';
 
 export default Joi.object({

@@ -1,4 +1,4 @@
-import { Body, Controller, Post, SetMetadata } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { UsersService } from './providers/users.service';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
