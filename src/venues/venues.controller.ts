@@ -10,7 +10,7 @@ import {
 import { VenuesService } from './providers/venues.service';
 import { CreateVenueDto } from './dtos/create-venue.dto';
 import { PatchVenueDto } from './dtos/patch-venue.dto';
-import { ApiOkResponse, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiHeader, ApiOkResponse, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { GetVenuesDto } from './dtos/get-venues.dto';
 import { GetVenueDetailDto } from './dtos/get-venue-detail.dto';
 
@@ -23,6 +23,7 @@ export class VenuesController {
   constructor(private readonly venuesService: VenuesService) {}
 
   @Post()
+  @ApiHeader({name: 'Authorization', required: true, description: 'Bearer token for authentication'})
   @ApiResponse({
     status: 201,
     description: 'The record has been successfully created.',
@@ -35,6 +36,7 @@ export class VenuesController {
   }
 
   @Get()
+  @ApiHeader({name: 'Authorization', required: true, description: 'Bearer token for authentication'})
   @ApiOkResponse({
     type: [GetVenuesDto],
     description: 'The record has been successfully retrieved.',
@@ -46,6 +48,7 @@ export class VenuesController {
   }
 
   @Get(':id')
+  @ApiHeader({name: 'Authorization', required: true, description: 'Bearer token for authentication'})
   @ApiOkResponse({
     type: [GetVenueDetailDto],
     description: 'The record has been successfully retrieved.',
@@ -58,6 +61,7 @@ export class VenuesController {
   }
 
   @Patch(':id')
+  @ApiHeader({name: 'Authorization', required: true, description: 'Bearer token for authentication'})
   @ApiResponse({
     status: 200,
     description: 'The record has been successfully updated.',
@@ -73,6 +77,7 @@ export class VenuesController {
   }
 
   @Delete(':id')
+  @ApiHeader({name: 'Authorization', required: true, description: 'Bearer token for authentication'})
   @ApiResponse({
     status: 204,
     description: 'The record has been successfully deleted.',

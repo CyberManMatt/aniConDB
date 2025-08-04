@@ -20,6 +20,9 @@ import { JwtModule } from '@nestjs/jwt';
 import { APP_GUARD } from '@nestjs/core';
 import { AccessTokenGuard } from './auth/guards/access-token/access-token.guard';
 import { AuthenticationGuard } from './auth/guards/authentication/authentication.guard';
+import { AdmissionsController } from './admissions/admissions.controller';
+import { AdmissionsModule } from './admissions/admissions.module';
+import { Admission } from './admissions/admission.entity';
 
 const ENV = process.env.NODE_ENV;
 
@@ -29,6 +32,7 @@ const ENV = process.env.NODE_ENV;
     ConventionsModule,
     UsersModule,
     AuthModule,
+    AdmissionsModule,
     ConfigModule.forFeature(jwtConfig),
     JwtModule.registerAsync(jwtConfig.asProvider()),
     ConfigModule.forRoot({
@@ -42,7 +46,7 @@ const ENV = process.env.NODE_ENV;
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
-        entities: [Venue, Convention, User],
+        entities: [Venue, Convention, User, Admission],
         synchronize: configService.get('database.synchronize'),
         autoLoadEntities: configService.get('database.autoLoadEntities'),
         port: +configService.get('database.port'),
@@ -53,7 +57,7 @@ const ENV = process.env.NODE_ENV;
       }),
     }),
   ],
-  controllers: [AppController],
+  controllers: [AppController, AdmissionsController],
   providers: [
     AppService,
     { provide: APP_GUARD, useClass: AuthenticationGuard },

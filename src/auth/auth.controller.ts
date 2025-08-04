@@ -10,6 +10,7 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @HttpCode(HttpStatus.OK)
+  @Auth(AuthType.None) // No authentication required for sign-in
   @Post('sign-in')
   public async login(@Body() signInDto: SignInDto) {
     return await this.authService.login(signInDto);

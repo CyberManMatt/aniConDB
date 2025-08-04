@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { ConventionsService } from './providers/conventions.service';
 import { CreateConDto } from './dtos/create-con.dto';
-import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiHeader, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { GetConsDto } from './dtos/get-cons.dto';
 import { GetConDetailDto } from './dtos/get-con-detail.dto';
 import { PatchConDto } from './dtos/patch-con.dto';
@@ -24,6 +24,7 @@ export class ConventionsController {
   // For example, methods to create, update, delete, or retrieve conventions
 
   @Post()
+  @ApiHeader({name: 'Authorization', required: true, description: 'Bearer token for authentication'})
   @ApiResponse({
     status: 201,
     description: 'The convention has been successfully created.',
@@ -38,6 +39,7 @@ export class ConventionsController {
   }
 
   @Get()
+  @ApiHeader({name: 'Authorization', required: true, description: 'Bearer token for authentication'})
   @ApiResponse({
     status: 200,
     type: [GetConsDto],
@@ -50,6 +52,7 @@ export class ConventionsController {
   }
 
   @Get(':id')
+  @ApiHeader({name: 'Authorization', required: true, description: 'Bearer token for authentication'})
   @ApiResponse({
     status: 200,
     type: [GetConDetailDto],
@@ -63,6 +66,7 @@ export class ConventionsController {
   }
 
   @Patch(':id')
+  @ApiHeader({name: 'Authorization', required: true, description: 'Bearer token for authentication'})
   @ApiResponse({
     status: 200,
     description: 'The convention has been successfully updated.',
@@ -78,6 +82,7 @@ export class ConventionsController {
   }
 
   @Delete(':id')
+  @ApiHeader({name: 'Authorization', required: true, description: 'Bearer token for authentication'})
   @ApiResponse({
     status: 204,
     description: 'The convention has been successfully deleted.',
