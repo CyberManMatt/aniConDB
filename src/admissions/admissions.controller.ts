@@ -1,16 +1,16 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { AdmissionsService } from './providers/admissions.service';
 import { CreateAdmissionDto } from './dtos/create-admission.dto';
-import { ApiHeader, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiHeader, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { GetAdmissionDetailDto } from './dtos/get-admission-detail.dto';
 import { PatchAdmissionDto } from './dtos/patch-admission.dto';
 
+@ApiBearerAuth()
 @Controller('admissions')
 export class AdmissionsController {
     constructor(private readonly admissionsService: AdmissionsService) {}
 
     @Post()
-    @ApiHeader({name: 'Authorization', required: true, description: 'Bearer token for authentication'})
     @ApiResponse({
         status: 201,
         description: 'The admission has been successfully created.',
@@ -23,20 +23,18 @@ export class AdmissionsController {
     }
 
     @Get(':id')
-    @ApiHeader({name: 'Authorization', required: true, description: 'Bearer token for authentication'})
     @ApiResponse({
         status: 200,
         type: [GetAdmissionDetailDto],
         description: 'The admission details have been successfully retrieved.'
     })
     @ApiResponse({ status: 403, description: 'Forbidden.' })
-    @ApiOperation({ summary: 'Get all admissions' })
+    @ApiOperation({ summary: 'Get admission by ID' })
     public getAdmissions(id: number) {
         return this.admissionsService.getAdmissionById(id);
     }
 
     @Patch(':id')
-    @ApiHeader({name: 'Authorization', required: true, description: 'Bearer token for authentication'})
     @ApiResponse({
         status: 200,
         description: 'The admission has been successfully updated.',
@@ -52,7 +50,6 @@ export class AdmissionsController {
     }
 
     @Delete(':id')
-    @ApiHeader({name: 'Authorization', required: true, description: 'Bearer token for authentication'})
     @ApiResponse({
         status: 204,
         description: 'The admission has been successfully deleted.',
