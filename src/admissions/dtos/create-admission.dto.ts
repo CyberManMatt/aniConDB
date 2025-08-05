@@ -1,6 +1,7 @@
-import { IsISO8601, IsNotEmpty, IsCurrency } from 'class-validator';
+import { IsISO8601, IsNotEmpty, IsCurrency, IsNumber } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { CreateConDto } from 'src/conventions/dtos/create-con.dto';
+import { Type } from 'class-transformer';
 
 export class CreateAdmissionDto {
   @ApiProperty({ description: 'The name of the admission' })
@@ -19,7 +20,8 @@ export class CreateAdmissionDto {
 
   @ApiProperty({ description: 'The price of the admission' })
   @IsNotEmpty()
-  @IsCurrency()
+  @IsNumber()
+  @Type(() => Number)
   price: number;
 
   @ApiProperty({ description: 'Indicates if the admission is premium' })
@@ -32,5 +34,5 @@ export class CreateAdmissionDto {
 
   @ApiProperty({ description: 'The convention associated with the admission' })
   @IsNotEmpty()
-  convention: CreateConDto;
+  conventionId: number;
 }

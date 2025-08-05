@@ -2,12 +2,15 @@ import {
   IsArray,
   IsISO8601,
   IsNotEmpty,
+  IsNumber,
   IsOptional,
   IsUrl,
+  ValidateNested,
 } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { CreateVenueDto } from 'src/venues/dtos/create-venue.dto';
 import { CreateAdmissionDto } from 'src/admissions/dtos/create-admission.dto';
+import { Type } from 'class-transformer';
 
 export class CreateConDto {
   @ApiProperty({ description: 'The name of the convention' })
@@ -44,9 +47,14 @@ export class CreateConDto {
 
   @ApiProperty({ description: 'The venue ID of the convention' })
   @IsNotEmpty()
-  venue: CreateVenueDto;
+  @IsNumber()
+  @Type(() => Number)
+  venueId: number;
 
-  @ApiProperty()
-  @IsNotEmpty()
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateAdmissionDto)
   admissions: CreateAdmissionDto[];
 }

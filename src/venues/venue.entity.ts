@@ -1,4 +1,5 @@
-import { Entity } from 'typeorm';
+import { Convention } from 'src/conventions/convention.entity';
+import { Entity, OneToMany } from 'typeorm';
 import { PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
@@ -35,4 +36,9 @@ export class Venue {
 
   @Column({ nullable: true })
   foodCourt: boolean;
+
+  @OneToMany(() => Convention, (convention) => convention.venue, {
+    eager: true,
+  })
+  conventions: Convention[];
 }

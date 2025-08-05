@@ -30,7 +30,7 @@ export class AdmissionsController {
     })
     @ApiResponse({ status: 403, description: 'Forbidden.' })
     @ApiOperation({ summary: 'Get admission by ID' })
-    public getAdmissions(id: number) {
+    public getAdmissions(@Param('id') id: number) {
         return this.admissionsService.getAdmissionById(id);
     }
 
