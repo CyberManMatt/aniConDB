@@ -1,0 +1,6 @@
+POST locahost:3000/auth/sign-in
+
+{
+    "email": "test@example.com"
+    "password": "abcd1234!"
+}

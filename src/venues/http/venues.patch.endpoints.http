@@ -1,0 +1,7 @@
+PATCH http://localhost:3000/venues/1
+Content-Type: application/json
+Authorization: Bearer { accessToken }
+
+{
+    "foodCourt": "false"
+}

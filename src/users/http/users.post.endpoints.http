@@ -1,0 +1,7 @@
+POST localhost:3000/users
+
+{
+  "username": "Test User",
+  "email": "test@example.com",
+  "password": "abcd1234!"
+}

@@ -45,5 +45,21 @@ Push your code to your forked repository
 Open a pull request from your forked repository to the main repository (`origin/main`)
 
 ## How to Use
-After running the development server, create an account with the `POST /users` endpoint. After creating an account, sign in by using the `POST /auth/sign-in` endpoint. After signing in, you should get an `accessToken` in return. This token is your Authorization token that you need to include in the header of your requests of all other endpoints.
+### Swagger UI
+1. Go to `localhost:3000/docs`
 
+2. Scroll down to the `POST /users` endpoint and click "Try it Out".
+
+3. Fill out the JSON object. The only required fields are `username`, `email address`, and `password`.
+
+4. Click "Execute". You should recieve a `201` status.
+
+5. Go to the `POST /auth/sign-in` endpoint and click "Try It Out"
+
+6. Input the email address and password that was created at step 2 and click "Execute"
+
+7. Copy the `accessToken` from the response body
+
+8. Go to the top of the page and click "Authorize"
+
+9. Paste the `accessToken` in the "Value" field and click "Authorize"

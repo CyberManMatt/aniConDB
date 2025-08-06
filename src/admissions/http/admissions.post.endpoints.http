@@ -1,0 +1,29 @@
+POST localhost:3000/admissions
+Content-Type: application/json
+Authorization: Bearer {accessToken}
+
+{
+  "name": "3 Day Badge",
+  "validFrom": "2025-08-06T19:43:44.546Z",
+  "validTo": "2025-08-06T19:43:44.546Z",
+  "price": 79.99,
+  "isPremium": false,
+  "isChild": false,
+  "conventionId": 1
+}
+
+###
+
+POST localhost:3000/venues
+Content-Type: application/json
+Authorization: Bearer {accessToken}
+
+{
+  "name": "3 Day Chibi Badge",
+  "validFrom": "2025-08-06T19:43:44.546Z",
+  "validTo": "2025-08-06T19:43:44.546Z",
+  "price": 29.99,
+  "isPremium": false,
+  "isChild": true,
+  "conventionId": 1
+}

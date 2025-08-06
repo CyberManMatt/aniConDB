@@ -1,0 +1,7 @@
+PATCH http://localhost:3000/admissions/1
+Content-Type: application/json
+Authorization: Bearer { accessToken }
+
+{
+    "name": "3 Day Test Badge"
+}

@@ -1,0 +1,12 @@
+POST localhost:3000/cons
+Content-Type: application/json
+Authorization: Bearer {accessToken}
+
+{
+  "name": "Youmacon",
+  "description": "Anime con in downtown Detroit",
+  "startDate": "2025-08-06T19:33:28.915Z",
+  "endDate": "2025-08-06T19:33:28.915Z",
+  "webpage": "www.youmacon.com",
+  "venueId": 1
+}

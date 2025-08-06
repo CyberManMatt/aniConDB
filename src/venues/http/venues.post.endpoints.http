@@ -1,0 +1,14 @@
+POST localhost:3000/venues
+Content-Type: application/json
+Authorization: Bearer {accessToken}
+
+{
+  "name": "Huntington Place",
+  "address1": "1 Washington Blvd",
+  "city": "Detroit",
+  "state": "MI",
+  "zip": "48226",
+  "phone": "3138778777",
+  "website": "https://www.huntingtonplacedetroit.com/",
+  "foodCourt": true
+}
