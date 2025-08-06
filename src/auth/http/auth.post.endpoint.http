@@ -1,6 +1,7 @@
-POST locahost:3000/auth/sign-in
+POST {{hostAddress}}/auth/sign-in
+Content-Type: application/json
 
 {
-    "email": "test@example.com"
-    "password": "abcd1234!"
+    "email": "test@example.com",
+    "password": "1234abcd!"
 }

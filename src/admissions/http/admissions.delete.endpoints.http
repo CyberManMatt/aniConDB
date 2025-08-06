@@ -1,2 +1,2 @@
-DELETE localhost:3000/admissions/1
-Authorization: Bearer {accessToken}
+DELETE {{hostAddress}}/admissions/1
+Authorization: Bearer {{accessToken}}

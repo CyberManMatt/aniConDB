@@ -1,7 +1,7 @@
-GET localhost:3000/venues
-Authorization: Bearer { accessToken }
+GET {{hostAddress}}/venues
+Authorization: Bearer {{accessToken}}
 
 ###
 
-GET localhost:3000/venues/1
-Authorization: Bearer { accessToken }
+GET {{hostAddress}}/venues/1
+Authorization: Bearer {{accessToken}}

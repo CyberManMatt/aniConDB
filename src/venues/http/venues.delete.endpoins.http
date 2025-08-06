@@ -1,2 +1,2 @@
-DELETE localhost:3000\venue\1
-Authorization: Bearer { accessToken }
+DELETE {{hostAddress}}\venue\1
+Authorization: Bearer {{accessToken}}

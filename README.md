@@ -12,7 +12,7 @@ Fork the repository to your account.
 Clone the forked repository to a local directory or start a GitHub Codespace.
 
 ### Set up Database
-aniConDB uses PostgreSQL as its database. You can either download the client or run a Docker container. You can use any username, password, and database name. If you wish to use a Docker container, run the script below:
+aniConDB uses PostgresSQL as its database. You can either download the client or run a Docker container. You can use any username, password, and database name. If you wish to use a Docker container, run the script below:
 
 ```bash
 docker run -p 5432:5432 \
@@ -30,7 +30,7 @@ The required environment variables are:
 - `POSTGRES_PASSWORD`
 - `JWT_SECRET`
 
-The default user name for Postgres is `anicondbdev`
+The default username for Postgres is `anicondbdev`
 
 ### Run the development server
 Run `npm run start:dev` in the terminal to run the development server. If you are using VS Code, you can Run and Debug the "Run dev server" setup.
@@ -48,11 +48,11 @@ Open a pull request from your forked repository to the main repository (`origin/
 ### Swagger UI
 1. Go to `localhost:3000/docs`
 
-2. Scroll down to the `POST /users` endpoint and click "Try it Out".
+2. Scroll down to the `POST /users` endpoint and click "Try it Out."
 
 3. Fill out the JSON object. The only required fields are `username`, `email address`, and `password`.
 
-4. Click "Execute". You should recieve a `201` status.
+4. Click "Execute." You should receive a `201` status.
 
 5. Go to the `POST /auth/sign-in` endpoint and click "Try It Out"
 
@@ -63,3 +63,20 @@ Open a pull request from your forked repository to the main repository (`origin/
 8. Go to the top of the page and click "Authorize"
 
 9. Paste the `accessToken` in the "Value" field and click "Authorize"
+
+### `.http` files
+1. Create a `http-client.private.env.json` file at the project's root. The file should look like below:
+    ```json
+    {
+      "dev": {
+        "hostAddress": "localhost:3000",
+        "accessToken": ""
+      }
+    }
+    ```
+
+2. Open the `src/users/http/users.post.endpoints.http` file. Replace the values with your own values and run the file. You should get a `201` status.
+
+3. Open the `src/auth/http/auth.post.endpoint.http` file. Replace the values with the values you used in step 2. You should get a `201` status, and a response with an `accessToken` and a `refreshToken`. If not, you may have typed the email address or password wrong.
+
+4. Copy the `accessToken` and paste it in the `http-client.private.env.json` file in the `accessToken` field.

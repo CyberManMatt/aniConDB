@@ -1,2 +1,2 @@
-GET localhost:3000/admissions/1
-Authorization: Bearer {accessToken}
+GET {{hostAddress}}/admissions/1
+Authorization: Bearer {{accessToken}}

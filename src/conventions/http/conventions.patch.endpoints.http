@@ -1,6 +1,6 @@
-PATCH http://localhost:3000/cons/1
+PATCH {{hostAddress}}/cons/1
 Content-Type: application/json
-Authorization: Bearer { accessToken }
+Authorization: Bearer {{accessToken}}
 
 {
     "description": "This is a test"

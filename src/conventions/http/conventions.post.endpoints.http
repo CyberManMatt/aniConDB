@@ -1,6 +1,6 @@
-POST localhost:3000/cons
+POST {{hostAddress}}/cons
 Content-Type: application/json
-Authorization: Bearer {accessToken}
+Authorization: Bearer {{accessToken}}
 
 {
   "name": "Youmacon",

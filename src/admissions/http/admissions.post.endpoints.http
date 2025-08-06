@@ -1,6 +1,6 @@
-POST localhost:3000/admissions
+POST {{hostAddress}}/admissions
 Content-Type: application/json
-Authorization: Bearer {accessToken}
+Authorization: Bearer {{accessToken}}
 
 {
   "name": "3 Day Badge",
@@ -14,9 +14,9 @@ Authorization: Bearer {accessToken}
 
 ###
 
-POST localhost:3000/venues
+POST {{hostAddress}}/admissions
 Content-Type: application/json
-Authorization: Bearer {accessToken}
+Authorization: Bearer {{accessToken}}
 
 {
   "name": "3 Day Chibi Badge",

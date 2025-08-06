@@ -1,6 +1,6 @@
-PATCH http://localhost:3000/venues/1
+PATCH {{hostAddress}}/venues/1
 Content-Type: application/json
-Authorization: Bearer { accessToken }
+Authorization: Bearer {{accessToken}}
 
 {
     "foodCourt": "false"

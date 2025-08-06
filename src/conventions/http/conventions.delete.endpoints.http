@@ -1,2 +1,2 @@
-DELETE localhost:3000/cons/1
-Authorization: Bearer { accessToken }
+DELETE {{hostAddress}}/cons/1
+Authorization: Bearer {{accessToken}}
