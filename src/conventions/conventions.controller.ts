@@ -56,7 +56,7 @@ export class ConventionsController {
   @Get(':id')
   @ApiResponse({
     status: 200,
-    type: [GetConDetailDto],
+    type: GetConDetailDto,
     description: 'The convention has been successfully retrieved.',
   })
   @ApiResponse({ status: 403, description: 'Forbidden.' })

@@ -33,7 +33,7 @@ export class AdmissionsController {
   @Get(':id')
   @ApiResponse({
     status: 200,
-    type: [GetAdmissionDetailDto],
+    type: GetAdmissionDetailDto,
     description: 'The admission details have been successfully retrieved.',
   })
   @ApiResponse({ status: 403, description: 'Forbidden.' })

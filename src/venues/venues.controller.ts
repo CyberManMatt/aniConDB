@@ -56,7 +56,7 @@ export class VenuesController {
 
   @Get(':id')
   @ApiOkResponse({
-    type: [GetVenueDetailDto],
+    type: GetVenueDetailDto,
     description: 'The record has been successfully retrieved.',
   })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
