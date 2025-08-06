@@ -1,21 +1,24 @@
 import {
   Body,
+  ClassSerializerInterceptor,
   Controller,
   Delete,
   Get,
   Param,
   Patch,
   Post,
+  UseInterceptors,
 } from '@nestjs/common';
 import { ConventionsService } from './providers/conventions.service';
 import { CreateConDto } from './dtos/create-con.dto';
-import { ApiBearerAuth, ApiHeader, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { GetConsDto } from './dtos/get-cons.dto';
 import { GetConDetailDto } from './dtos/get-con-detail.dto';
 import { PatchConDto } from './dtos/patch-con.dto';
 
 @ApiBearerAuth()
 @Controller('cons')
+@UseInterceptors(ClassSerializerInterceptor)
 export class ConventionsController {
   // This controller can be expanded with endpoints to handle HTTP requests related to conventions
   // For example, endpoints to create, update, delete, or retrieve conventions

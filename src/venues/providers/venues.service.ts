@@ -31,11 +31,16 @@ export class VenuesService {
 
   /* Get a venue by ID */
   public async getVenueById(id: number): Promise<GetVenueDetailDto> {
-    const venue = await this.venueRepository.findOneBy({ id });
+    const venue = await this.venueRepository.findOne({
+      where: { id },
+      relations: ['conventions'],
+    });
     if (!venue) {
       throw new NotFoundException(`Venue with id ${id} not found`);
     }
-    return plainToInstance(GetVenueDetailDto, venue);
+    return plainToInstance(GetVenueDetailDto, venue, {
+      excludeExtraneousValues: true,
+    });
   }
 
   /* Update a venue */

@@ -3,6 +3,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Convention } from '../convention.entity';
 import { Repository } from 'typeorm';
 import { CreateConDto } from '../dtos/create-con.dto';
+import { GetConsDto } from '../dtos/get-cons.dto';
+import { plainToInstance } from 'class-transformer';
+import { GetConDetailDto } from '../dtos/get-con-detail.dto';
 
 @Injectable()
 export class ConventionsService {
@@ -22,17 +25,23 @@ export class ConventionsService {
   }
 
   /* Get all conventions */
-  public async getConventions(): Promise<Convention[]> {
-    return this.conventionRepository.find();
+  public async getConventions(): Promise<GetConsDto[]> {
+    const cons = await this.conventionRepository.find();
+    return plainToInstance(GetConsDto, cons, { excludeExtraneousValues: true });
   }
 
   /* Get a convention by ID */
-  public async getConventionById(id: number): Promise<Convention> {
-    const convention = await this.conventionRepository.findOneBy({ id });
+  public async getConventionById(id: number): Promise<GetConDetailDto> {
+    const convention = await this.conventionRepository.findOne({
+      where: { id },
+      relations: ['venue'],
+    });
     if (!convention) {
       throw new NotFoundException(`Convention with id ${id} not found`);
     }
-    return convention;
+    return plainToInstance(GetConDetailDto, convention, {
+      excludeExtraneousValues: true,
+    });
   }
 
   /* Update a convention */

@@ -1,6 +1,7 @@
 import { Convention } from 'src/conventions/convention.entity';
 import { Entity, OneToMany } from 'typeorm';
 import { PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Exclude } from 'class-transformer';
 
 @Entity()
 export class Venue {
@@ -37,6 +38,7 @@ export class Venue {
   @Column({ nullable: true })
   foodCourt: boolean;
 
+  @Exclude()
   @OneToMany(() => Convention, (convention) => convention.venue, {
     eager: true,
   })

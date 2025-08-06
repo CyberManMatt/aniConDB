@@ -1,7 +1,8 @@
 import { Admission } from 'src/admissions/admission.entity';
 import { Venue } from 'src/venues/venue.entity';
-import { Entity, JoinColumn, ManyToOne, OneToMany, OneToOne } from 'typeorm';
+import { Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Exclude } from 'class-transformer';
 
 @Entity()
 export class Convention {
@@ -36,6 +37,7 @@ export class Convention {
   @Column()
   venueId: number;
 
+  @Exclude()
   @OneToMany(() => Admission, (admission) => admission.convention, {
     eager: true,
   })
