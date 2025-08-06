@@ -8,8 +8,8 @@ import {
   IsUrl,
   ValidateNested,
 } from 'class-validator';
-import { CreateAdmissionDto } from '../../admissions/dtos/create-admission.dto';
 import { ConVenueDto } from './con-venue.dto';
+import { ConAdmissionsDto } from './con-admissions.dto';
 
 export class GetConDetailDto {
   @Expose()
@@ -65,6 +65,6 @@ export class GetConDetailDto {
   @IsOptional()
   @IsArray()
   @ValidateNested({ each: true })
-  @Type(() => CreateAdmissionDto)
-  admissions: CreateAdmissionDto[];
+  @Type(() => ConAdmissionsDto)
+  admissions: ConAdmissionsDto[];
 }
