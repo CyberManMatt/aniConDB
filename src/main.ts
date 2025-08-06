@@ -13,6 +13,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setVersion('1.0')
     .setTitle('AniConDB API')
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
