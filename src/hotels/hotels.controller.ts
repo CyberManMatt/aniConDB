@@ -63,13 +63,16 @@ export class HotelsController {
   @Patch(':id')
   @ApiResponse({
     status: 200,
-    description: 'The hotel has been successfully updated.'
+    description: 'The hotel has been successfully updated.',
   })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiResponse({ status: 404, description: 'Hotel not found.' })
   @ApiResponse({ status: 400, description: 'Bad Request.' })
   @ApiOperation({ summary: 'Update a hotel by ID' })
-  public updateHotel(@Param('id') id: number, @Body() updateHotelDto: PatchHotelDto) {
+  public updateHotel(
+    @Param('id') id: number,
+    @Body() updateHotelDto: PatchHotelDto,
+  ) {
     return this.hotelsService.updateHotel(id, updateHotelDto);
   }
 
