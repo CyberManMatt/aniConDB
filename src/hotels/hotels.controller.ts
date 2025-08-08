@@ -63,7 +63,7 @@ export class HotelsController {
   @Patch(':id')
   @ApiResponse({
     status: 200,
-    description: 'The hotel has been successfully updated.',
+    description: 'The hotel has been successfully updated.'
   })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiResponse({ status: 404, description: 'Hotel not found.' })
