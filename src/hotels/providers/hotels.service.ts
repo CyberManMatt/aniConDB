@@ -75,19 +75,30 @@ export class HotelsService {
         throw new BadRequestException(`Hotel with ID ${id} not found`);
       }
 
-      let conventions: Convention[] = [];
-      if (updateHotelDto.conventions?.length) {
-        conventions = await this.conventionRepository.findBy({
-          id: In(updateHotelDto.conventions),
+      let updatedHotel;
+      if (updateHotelDto.conventions !== undefined) {
+        let conventions: Convention[] = [];
+        if (updateHotelDto.conventions?.length) {
+          conventions = await this.conventionRepository.findBy({
+            id: In(updateHotelDto.conventions),
+          });
+        }
+        updatedHotel = this.hotelsRepository.merge(hotel, {
+          ...updateHotelDto,
+          conventions,
         });
+      } else {
+        // Do not touch conventions if not provided
+        const { conventions, ...rest } = updateHotelDto;
+        updatedHotel = this.hotelsRepository.merge(hotel, rest);
       }
 
-      const updatedHotel = this.hotelsRepository.merge(hotel, {
-        ...updateHotelDto,
-        conventions,
-      });
+      // Persist the changes
+      const savedHotel = await this.hotelsRepository.save(updatedHotel);
 
-      return await this.hotelsRepository.save(updatedHotel);
+      return plainToInstance(GetHotelDetailsDto, savedHotel, {
+        excludeExtraneousValues: true,
+      });
     } catch (error) {
       throw new BadRequestException(`Error updating hotel: ${error.message}`);
     }

@@ -1,0 +1,8 @@
+###
+PATCH {{hostAddress}}/hotels/2
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "website": "https://newhotelwebsite.com"
+}
