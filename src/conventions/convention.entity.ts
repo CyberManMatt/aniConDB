@@ -1,8 +1,16 @@
 import { Admission } from 'src/admissions/admission.entity';
 import { Venue } from 'src/venues/venue.entity';
-import { Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
+import {
+  Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 import { PrimaryGeneratedColumn, Column } from 'typeorm';
 import { Exclude } from 'class-transformer';
+import { Hotel } from '../hotels/hotel.entity';
 
 @Entity()
 export class Convention {
@@ -42,6 +50,10 @@ export class Convention {
     eager: true,
   })
   admissions: Admission[];
+
+  @Exclude()
+  @ManyToMany(() => Hotel, (hotel) => hotel.conventions, { eager: true })
+  hotels: Hotel[];
 
   // Additional properties and methods can be added as needed
 }

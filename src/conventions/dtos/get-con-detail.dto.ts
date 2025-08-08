@@ -10,6 +10,7 @@ import {
 } from 'class-validator';
 import { ConVenueDto } from './con-venue.dto';
 import { ConAdmissionsDto } from './con-admissions.dto';
+import { ConHotelsDto } from './con-hotels.dto';
 
 export class GetConDetailDto {
   @Expose()
@@ -67,4 +68,12 @@ export class GetConDetailDto {
   @ValidateNested({ each: true })
   @Type(() => ConAdmissionsDto)
   admissions: ConAdmissionsDto[];
+
+  @Expose()
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => ConHotelsDto)
+  hotels: ConHotelsDto[];
 }

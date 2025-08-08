@@ -1,0 +1,20 @@
+### POST /hotels
+POST {{hostAddress}}/hotels
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+  "name": "Detroit Marriott at the Renaissance Center",
+  "address1": "100 Renaissance Center",
+  "city": "Detroit",
+  "state": "MI",
+  "zip": "48243",
+  "phone": "3135673126",
+  "website": "https://gmrencen.com",
+  "conBlock": true,
+  "reservationDeadline": "2026-08-04",
+  "reservationPage": "www.example.com",
+  "conventions": [1]
+}
+
+###

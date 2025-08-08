@@ -1,0 +1,7 @@
+### GET /hotels
+GET {{hostAddress}}/hotels
+Authorization: Bearer {{accessToken}}
+
+### GET /hotels/{id}
+GET {{hostAddress}}/hotels/1
+Authorization: Bearer {{accessToken}}
