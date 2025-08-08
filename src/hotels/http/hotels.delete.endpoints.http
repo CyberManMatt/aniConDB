@@ -1,0 +1,3 @@
+### DELETE /hotels/{id}
+DELETE {{hostAddress}}/hotels/2
+Authorization: Bearer {{accessToken}}

@@ -1,6 +1,6 @@
 POST {{hostAddress}}/venues
 Content-Type: application/json
-Authorization: Bearer {accessToken}
+Authorization: Bearer {{accessToken}}
 
 {
   "name": "Huntington Place",
