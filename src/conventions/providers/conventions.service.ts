@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Convention } from '../convention.entity';
 import { Repository } from 'typeorm';
 import { CreateConDto } from '../dtos/create-con.dto';
-import { GetConsDto } from '../dtos/get-cons.dto';
 import { plainToInstance } from 'class-transformer';
 import { GetConDetailDto } from '../dtos/get-con-detail.dto';
 import { PaginationProvider } from '../../common/pagination/providers/pagination.provider';
