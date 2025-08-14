@@ -6,6 +6,9 @@ import { CreateConDto } from '../dtos/create-con.dto';
 import { GetConsDto } from '../dtos/get-cons.dto';
 import { plainToInstance } from 'class-transformer';
 import { GetConDetailDto } from '../dtos/get-con-detail.dto';
+import { PaginationProvider } from '../../common/pagination/providers/pagination.provider';
+import { GetConsQueryDto } from '../dtos/get-cons-query.dto';
+import { Paginated } from '../../common/pagination/interfaces/paginated.interface';
 
 @Injectable()
 export class ConventionsService {
@@ -16,6 +19,8 @@ export class ConventionsService {
     // Inject any necessary repositories or services here
     @InjectRepository(Convention)
     private readonly conventionRepository: Repository<Convention>,
+
+    private readonly paginationProvider: PaginationProvider,
   ) {}
 
   /* Create a new convention */
@@ -25,9 +30,16 @@ export class ConventionsService {
   }
 
   /* Get all conventions */
-  public async getConventions(): Promise<GetConsDto[]> {
-    const cons = await this.conventionRepository.find();
-    return plainToInstance(GetConsDto, cons, { excludeExtraneousValues: true });
+  public async getConventions(
+    consQuery: GetConsQueryDto,
+  ): Promise<Paginated<Convention>> {
+    return await this.paginationProvider.paginateQuery(
+      {
+        limit: consQuery.limit,
+        page: consQuery.page,
+      },
+      this.conventionRepository,
+    );
   }
 
   /* Get a convention by ID */

@@ -8,6 +8,9 @@ import { In } from 'typeorm';
 import { plainToInstance } from 'class-transformer';
 import { GetHotelDetailsDto } from '../dtos/get-hotel-details.dto';
 import { PatchHotelDto } from '../dtos/patch-hotel.dto';
+import { GetHotelsQueryDto } from '../dtos/get-hotels-query.dto';
+import { Paginated } from '../../common/pagination/interfaces/paginated.interface';
+import { PaginationProvider } from '../../common/pagination/providers/pagination.provider';
 
 @Injectable()
 export class HotelsService {
@@ -16,6 +19,7 @@ export class HotelsService {
     private readonly hotelsRepository: Repository<Hotel>,
     @InjectRepository(Convention)
     private readonly conventionRepository: Repository<Convention>,
+    private readonly paginationProvider: PaginationProvider,
   ) {}
 
   public async createHotel(createHotelDto: CreateHotelDto) {
@@ -38,14 +42,16 @@ export class HotelsService {
     }
   }
 
-  public async getHotels() {
-    try {
-      return await this.hotelsRepository.find({
-        relations: ['conventions'],
-      });
-    } catch (error) {
-      throw new BadRequestException(`Error fetching hotels: ${error.message}`);
-    }
+  public async getHotels(
+    hotelsQuery: GetHotelsQueryDto,
+  ): Promise<Paginated<Hotel>> {
+    return await this.paginationProvider.paginateQuery(
+      {
+        limit: hotelsQuery.limit,
+        page: hotelsQuery.page,
+      },
+      this.hotelsRepository,
+    );
   }
 
   public async getHotelById(id: number) {

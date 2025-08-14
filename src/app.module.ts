@@ -25,6 +25,7 @@ import { AdmissionsModule } from './admissions/admissions.module';
 import { Admission } from './admissions/admission.entity';
 import { HotelsModule } from './hotels/hotels.module';
 import { Hotel } from './hotels/hotel.entity';
+import { PaginationModule } from './common/pagination/pagination.module';
 
 const ENV = process.env.NODE_ENV;
 
@@ -59,6 +60,7 @@ const ENV = process.env.NODE_ENV;
       }),
     }),
     HotelsModule,
+    PaginationModule,
   ],
   controllers: [AppController, AdmissionsController],
   providers: [

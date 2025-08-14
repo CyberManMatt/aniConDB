@@ -1,3 +1,5 @@
+### POST /venues
+
 POST {{hostAddress}}/venues
 Content-Type: application/json
 Authorization: Bearer {{accessToken}}

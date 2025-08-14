@@ -7,6 +7,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   UseInterceptors,
 } from '@nestjs/common';
 import { VenuesService } from './providers/venues.service';
@@ -20,6 +21,7 @@ import {
 } from '@nestjs/swagger';
 import { GetVenuesDto } from './dtos/get-venues.dto';
 import { GetVenueDetailDto } from './dtos/get-venue-detail.dto';
+import { GetVenuesQueryDto } from './dtos/get-venues-query.dto';
 
 @ApiBearerAuth()
 @Controller('venues')
@@ -50,8 +52,8 @@ export class VenuesController {
   })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiOperation({ summary: 'Get all venues' })
-  public getVenues() {
-    return this.venuesService.getVenues();
+  public getVenues(@Query() venueQuery: GetVenuesQueryDto) {
+    return this.venuesService.getVenues(venueQuery);
   }
 
   @Get(':id')

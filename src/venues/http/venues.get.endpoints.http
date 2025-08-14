@@ -1,7 +1,9 @@
+### GET /venues
+
 GET {{hostAddress}}/venues
 Authorization: Bearer {{accessToken}}
 
-###
+### GET /venues/{id}
 
 GET {{hostAddress}}/venues/1
 Authorization: Bearer {{accessToken}}

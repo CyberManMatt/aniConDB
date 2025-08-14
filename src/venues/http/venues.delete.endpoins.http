@@ -1,2 +1,4 @@
-DELETE {{hostAddress}}\venue\1
+### DELETE /venues
+
+DELETE {{hostAddress}}/venues/1
 Authorization: Bearer {{accessToken}}
