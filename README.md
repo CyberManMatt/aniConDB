@@ -69,7 +69,7 @@ Open a pull request from your forked repository to the main repository (`origin/
    ![swagger-docs3](https://github.com/user-attachments/assets/9ee45039-1958-46ee-be28-6a73c37a56c2)
 
 
-6. Input the email address and password that was created at step 2 and click "Execute". You should get a `201` status code and a response with an `accessToken` and `refreshToken`.
+6. Input the email address and password that was created at step 2 and click "Execute." You should get a `201` status code and a response with an `accessToken` and `refreshToken`.
    ![swagger-docs4](https://github.com/user-attachments/assets/55dfae9a-09ee-4d7b-81a6-b4e13ac09820)
 
 
@@ -120,9 +120,9 @@ Open a pull request from your forked repository to the main repository (`origin/
     }
    ```
 
-4. Open the `src/users/http/users.post.endpoints.http` file. Replace the values with your own values and click "Send Request". You should get a `201` status.
+4. Open the `src/users/http/users.post.endpoints.http` file. Replace the values with your own values and click "Send Request." You should get a `201` status.
 
-5. Open the `src/auth/http/auth.post.endpoint.http` file. Replace the values with the values you used in step 4 and click "Send Request". You should get a `201` status, and a response with an `accessToken` and a `refreshToken`. If not, you may have typed the email address or password wrong.
+5. Open the `src/auth/http/auth.post.endpoint.http` file. Replace the values with the values you used in step 4 and click "Send Request." You should get a `201` status, and a response with an `accessToken` and a `refreshToken`. If not, you may have typed the email address or password wrong.
 
 6. Copy the `accessToken` and paste it in the `accessToken` field in `rest-client.environmentVariables.dev` field in `settings.json`.
 

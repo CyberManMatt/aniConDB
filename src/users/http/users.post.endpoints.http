@@ -1,3 +1,5 @@
+### POST /users (Sign Up)
+
 POST {{hostAddress}}/users
 Content-Type: application/json
 

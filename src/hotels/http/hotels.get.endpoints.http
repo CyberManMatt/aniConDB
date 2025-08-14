@@ -3,5 +3,5 @@ GET {{hostAddress}}/hotels
 Authorization: Bearer {{accessToken}}
 
 ### GET /hotels/{id}
-GET {{hostAddress}}/hotels/2
+GET {{hostAddress}}/hotels/1
 Authorization: Bearer {{accessToken}}

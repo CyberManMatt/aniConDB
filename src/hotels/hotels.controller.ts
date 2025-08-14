@@ -7,6 +7,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   UseInterceptors,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
@@ -15,6 +16,7 @@ import { CreateHotelDto } from './dtos/create-hotel.dto';
 import { GetHotelsDto } from './dtos/get-hotels.dto';
 import { GetHotelDetailsDto } from './dtos/get-hotel-details.dto';
 import { PatchHotelDto } from './dtos/patch-hotel.dto';
+import { GetHotelsQueryDto } from './dtos/get-hotels-query.dto';
 
 @ApiBearerAuth()
 @Controller('hotels')
@@ -42,8 +44,8 @@ export class HotelsController {
   })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiOperation({ summary: 'Get all hotels' })
-  public getHotels() {
-    return this.hotelsService.getHotels();
+  public getHotels(@Query() hotelQuery: GetHotelsQueryDto) {
+    return this.hotelsService.getHotels(hotelQuery);
   }
 
   @Get(':id')

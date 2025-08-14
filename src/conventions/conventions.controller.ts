@@ -7,6 +7,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   UseInterceptors,
 } from '@nestjs/common';
 import { ConventionsService } from './providers/conventions.service';
@@ -15,6 +16,7 @@ import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { GetConsDto } from './dtos/get-cons.dto';
 import { GetConDetailDto } from './dtos/get-con-detail.dto';
 import { PatchConDto } from './dtos/patch-con.dto';
+import { GetConsQueryDto } from './dtos/get-cons-query.dto';
 
 @ApiBearerAuth()
 @Controller('cons')
@@ -49,8 +51,8 @@ export class ConventionsController {
   })
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @ApiOperation({ summary: 'Get all conventions' })
-  public getCons() {
-    return this.conventionsService.getConventions();
+  public getCons(@Query() consQuery: GetConsQueryDto) {
+    return this.conventionsService.getConventions(consQuery);
   }
 
   @Get(':id')

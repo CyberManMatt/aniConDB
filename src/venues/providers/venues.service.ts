@@ -7,6 +7,9 @@ import { NotFoundException } from '@nestjs/common';
 import { PatchVenueDto } from '../dtos/patch-venue.dto';
 import { GetVenueDetailDto } from '../dtos/get-venue-detail.dto';
 import { plainToInstance } from 'class-transformer';
+import { GetVenuesQueryDto } from '../dtos/get-venues-query.dto';
+import { PaginationProvider } from '../../common/pagination/providers/pagination.provider';
+import { Paginated } from '../../common/pagination/interfaces/paginated.interface';
 
 @Injectable()
 export class VenuesService {
@@ -16,6 +19,8 @@ export class VenuesService {
   constructor(
     @InjectRepository(Venue)
     private readonly venueRepository: Repository<Venue>,
+
+    private readonly paginationProvider: PaginationProvider,
   ) {}
 
   /* Create a new venue */
@@ -25,8 +30,16 @@ export class VenuesService {
   }
 
   /* Get all venues */
-  public async getVenues(): Promise<Venue[]> {
-    return this.venueRepository.find();
+  public async getVenues(
+    venueQuery: GetVenuesQueryDto,
+  ): Promise<Paginated<Venue>> {
+    return await this.paginationProvider.paginateQuery(
+      {
+        limit: venueQuery.limit,
+        page: venueQuery.page,
+      },
+      this.venueRepository,
+    );
   }
 
   /* Get a venue by ID */

@@ -1,4 +1,4 @@
-###
+### PATCH /hotels/{id}
 PATCH {{hostAddress}}/hotels/2
 Content-Type: application/json
 Authorization: Bearer {{accessToken}}
