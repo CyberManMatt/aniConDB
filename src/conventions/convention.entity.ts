@@ -11,32 +11,33 @@ import {
 import { PrimaryGeneratedColumn, Column } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import { Hotel } from '../hotels/hotel.entity';
+import { Vendor } from 'src/vendors/vendor.entity';
 
 @Entity()
 export class Convention {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: false})
   name: string;
 
-  @Column({ nullable: true })
-  description: string;
+  @Column({ nullable: true, type: 'text' })
+  description?: string;
 
   @Column({ nullable: true })
-  image: string;
+  image?: string;
 
   @Column({ nullable: true })
-  image_alt: string;
+  image_alt?: string;
 
-  @Column()
+  @Column({ nullable: false, type: 'date' })
   startDate: Date;
 
-  @Column()
+  @Column({ nullable: false, type: 'date' })
   endDate: Date;
 
   @Column({ nullable: true })
-  webpage: string;
+  webpage?: string;
 
   @ManyToOne(() => Venue, (venue) => venue.conventions)
   @JoinColumn({ name: 'venueId' })
@@ -54,6 +55,10 @@ export class Convention {
   @Exclude()
   @ManyToMany(() => Hotel, (hotel) => hotel.conventions, { eager: true })
   hotels: Hotel[];
+
+  @Exclude()
+  @ManyToMany(() => Vendor, (vendor) => vendor.conventions, { eager: true })
+  vendors: Vendor[];
 
   // Additional properties and methods can be added as needed
 }

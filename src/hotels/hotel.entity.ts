@@ -12,22 +12,22 @@ export class Hotel {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: false })
   name: string;
 
-  @Column()
+  @Column({ nullable: false })
   address1: string;
 
   @Column({ nullable: true })
-  address2: string;
+  address2?: string;
 
-  @Column()
+  @Column({ nullable: false })
   city: string;
 
-  @Column()
+  @Column({ nullable: false, length: 2 })
   state: string;
 
-  @Column()
+  @Column({ nullable: false, length: 5 })
   zip: string;
 
   @Column({ nullable: true })

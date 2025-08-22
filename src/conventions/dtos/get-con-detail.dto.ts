@@ -11,6 +11,7 @@ import {
 import { ConVenueDto } from './con-venue.dto';
 import { ConAdmissionsDto } from './con-admissions.dto';
 import { ConHotelsDto } from './con-hotels.dto';
+import { ConVendorsDto } from './con-vendors.dto';
 
 export class GetConDetailDto {
   @Expose()
@@ -70,10 +71,18 @@ export class GetConDetailDto {
   admissions: ConAdmissionsDto[];
 
   @Expose()
-  @ApiProperty()
+  @ApiPropertyOptional({ description: 'The hotels associated with the convention' })
   @IsNotEmpty()
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => ConHotelsDto)
   hotels: ConHotelsDto[];
+
+  @Expose()
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => ConVendorsDto)
+  vendors: ConVendorsDto[];
 }

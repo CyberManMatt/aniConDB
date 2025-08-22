@@ -15,19 +15,19 @@ export class Admission {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ type: 'date', nullable: false })
   validFrom: Date;
 
-  @Column()
+  @Column({ type: 'date', nullable: false })
   validTo: Date;
 
   @Column('decimal', { precision: 10, scale: 2 })
   price: number;
 
-  @Column()
+  @Column({ default: false, nullable: false, type: 'boolean' })
   isPremium: boolean;
 
-  @Column()
+  @Column({ default: false, nullable: false, type: 'boolean' })
   isChild: boolean;
 
   @ManyToOne(() => Convention, (convention) => convention.admissions)
