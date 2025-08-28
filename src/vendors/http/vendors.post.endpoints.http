@@ -1,0 +1,9 @@
+### POST /vendors
+POST {{hostAddress}}/vendors
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "name": "Test Vendor",
+    "conventions": [1]
+}
