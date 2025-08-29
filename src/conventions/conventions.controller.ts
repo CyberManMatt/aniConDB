@@ -18,7 +18,6 @@ import { GetConDetailDto } from './dtos/get-con-detail.dto';
 import { PatchConDto } from './dtos/patch-con.dto';
 import { GetConsQueryDto } from './dtos/get-cons-query.dto';
 
-@ApiBearerAuth()
 @Controller('cons')
 @UseInterceptors(ClassSerializerInterceptor)
 export class ConventionsController {
@@ -29,6 +28,7 @@ export class ConventionsController {
   // Additional methods can be added here to handle specific routes and logic
   // For example, methods to create, update, delete, or retrieve conventions
 
+  @ApiBearerAuth()
   @Post()
   @ApiResponse({
     status: 201,
@@ -68,6 +68,7 @@ export class ConventionsController {
     return this.conventionsService.getConventionById(id);
   }
 
+  @ApiBearerAuth()
   @Patch(':id')
   @ApiResponse({
     status: 200,
@@ -83,6 +84,7 @@ export class ConventionsController {
     return this.conventionsService.updateConvention(id, updateConventionDto);
   }
 
+  @ApiBearerAuth()
   @Delete(':id')
   @ApiResponse({
     status: 204,

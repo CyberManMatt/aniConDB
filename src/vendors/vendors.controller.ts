@@ -18,12 +18,12 @@ import { GetVendorsQueryDto } from './dtos/get-vendors-query.dto';
 import { GetVendorDetailsDto } from './dtos/get-vendor-details.dto';
 import { PatchVendorDto } from './dtos/patch-vendor.dto';
 
-@ApiBearerAuth()
 @Controller('vendors')
 @UseInterceptors(ClassSerializerInterceptor)
 export class VendorsController {
   constructor(private readonly vendorsService: VendorsService) {}
 
+  @ApiBearerAuth()
   @Post()
   @ApiResponse({
     status: 201,
@@ -64,6 +64,7 @@ export class VendorsController {
     return this.vendorsService.getVendorById(id);
   }
 
+  @ApiBearerAuth()
   @Patch(':id')
   @ApiResponse({
     status: 200,
@@ -80,6 +81,7 @@ export class VendorsController {
     return this.vendorsService.updateVendor(id, patchVendorDto);
   }
 
+  @ApiBearerAuth()
   @Delete(':id')
   @ApiResponse({
     status: 200,

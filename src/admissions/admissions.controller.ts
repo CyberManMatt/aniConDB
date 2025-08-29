@@ -13,11 +13,11 @@ import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { GetAdmissionDetailDto } from './dtos/get-admission-detail.dto';
 import { PatchAdmissionDto } from './dtos/patch-admission.dto';
 
-@ApiBearerAuth()
 @Controller('admissions')
 export class AdmissionsController {
   constructor(private readonly admissionsService: AdmissionsService) {}
 
+  @ApiBearerAuth()
   @Post()
   @ApiResponse({
     status: 201,
@@ -42,6 +42,7 @@ export class AdmissionsController {
     return this.admissionsService.getAdmissionById(id);
   }
 
+  @ApiBearerAuth()
   @Patch(':id')
   @ApiResponse({
     status: 200,
@@ -57,6 +58,7 @@ export class AdmissionsController {
     return this.admissionsService.updateAdmission(id, updateAdmissionDto);
   }
 
+  @ApiBearerAuth()
   @Delete(':id')
   @ApiResponse({
     status: 204,

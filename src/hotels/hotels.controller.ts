@@ -18,12 +18,12 @@ import { GetHotelDetailsDto } from './dtos/get-hotel-details.dto';
 import { PatchHotelDto } from './dtos/patch-hotel.dto';
 import { GetHotelsQueryDto } from './dtos/get-hotels-query.dto';
 
-@ApiBearerAuth()
 @Controller('hotels')
 @UseInterceptors(ClassSerializerInterceptor)
 export class HotelsController {
   constructor(private readonly hotelsService: HotelsService) {}
 
+  @ApiBearerAuth()
   @Post()
   @ApiResponse({
     status: 201,
@@ -62,6 +62,7 @@ export class HotelsController {
     return this.hotelsService.getHotelById(id);
   }
 
+  @ApiBearerAuth()
   @Patch(':id')
   @ApiResponse({
     status: 200,
@@ -78,6 +79,7 @@ export class HotelsController {
     return this.hotelsService.updateHotel(id, updateHotelDto);
   }
 
+  @ApiBearerAuth()
   @Delete(':id')
   @ApiResponse({
     status: 200,

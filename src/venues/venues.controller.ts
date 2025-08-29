@@ -23,7 +23,6 @@ import { GetVenuesDto } from './dtos/get-venues.dto';
 import { GetVenueDetailDto } from './dtos/get-venue-detail.dto';
 import { GetVenuesQueryDto } from './dtos/get-venues-query.dto';
 
-@ApiBearerAuth()
 @Controller('venues')
 @UseInterceptors(ClassSerializerInterceptor)
 export class VenuesController {
@@ -33,6 +32,7 @@ export class VenuesController {
   // The VenuesService can be injected here to handle business logic
   constructor(private readonly venuesService: VenuesService) {}
 
+  @ApiBearerAuth()
   @Post()
   @ApiResponse({
     status: 201,
@@ -68,6 +68,7 @@ export class VenuesController {
     return this.venuesService.getVenueById(id);
   }
 
+  @ApiBearerAuth()
   @Patch(':id')
   @ApiResponse({
     status: 200,
@@ -83,6 +84,7 @@ export class VenuesController {
     return this.venuesService.updateVenue(id, updateVenueDto);
   }
 
+  @ApiBearerAuth()
   @Delete(':id')
   @ApiResponse({
     status: 204,
