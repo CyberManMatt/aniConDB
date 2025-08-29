@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import { Entity } from 'typeorm';
 import { PrimaryGeneratedColumn, Column } from 'typeorm';
 
@@ -6,33 +7,34 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ unique: true, nullable: false })
   username: string;
 
-  @Column()
+  @Column({ unique: true, nullable: false })
   email: string;
 
-  @Column()
+  @Exclude()
+  @Column({ nullable: false })
   password: string;
 
   @Column({ nullable: true })
-  state: string;
+  state?: string;
 
   @Column({ nullable: true })
-  city: string;
+  city?: string;
 
   @Column({ nullable: true })
-  gender: string;
+  gender?: string;
 
   @Column('simple-array', { nullable: true })
-  pronouns: string;
+  pronouns?: string;
 
-  @Column({ nullable: true })
-  bio: string;
+  @Column({ nullable: true, type: 'text' })
+  bio?: string;
 
   @Column('simple-array', { nullable: true })
-  socials: string;
+  socials?: string;
 
   @Column({ nullable: true })
-  image: string;
+  image?: string;
 }

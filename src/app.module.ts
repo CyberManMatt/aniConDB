@@ -26,6 +26,8 @@ import { Admission } from './admissions/admission.entity';
 import { HotelsModule } from './hotels/hotels.module';
 import { Hotel } from './hotels/hotel.entity';
 import { PaginationModule } from './common/pagination/pagination.module';
+import { VendorsModule } from './vendors/vendors.module';
+import { Vendor } from './vendors/vendor.entity';
 
 const ENV = process.env.NODE_ENV;
 
@@ -49,7 +51,7 @@ const ENV = process.env.NODE_ENV;
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
-        entities: [Venue, Convention, User, Admission, Hotel],
+        entities: [Venue, Convention, User, Admission, Hotel, Vendor],
         synchronize: configService.get('database.synchronize'),
         autoLoadEntities: configService.get('database.autoLoadEntities'),
         port: +configService.get('database.port'),
@@ -61,6 +63,7 @@ const ENV = process.env.NODE_ENV;
     }),
     HotelsModule,
     PaginationModule,
+    VendorsModule,
   ],
   controllers: [AppController, AdmissionsController],
   providers: [
