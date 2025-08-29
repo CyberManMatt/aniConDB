@@ -71,7 +71,9 @@ export class GetConDetailDto {
   admissions: ConAdmissionsDto[];
 
   @Expose()
-  @ApiPropertyOptional({ description: 'The hotels associated with the convention' })
+  @ApiPropertyOptional({
+    description: 'The hotels associated with the convention',
+  })
   @IsNotEmpty()
   @IsArray()
   @ValidateNested({ each: true })

@@ -18,7 +18,7 @@ export class Convention {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ nullable: false})
+  @Column({ nullable: false })
   name: string;
 
   @Column({ nullable: true, type: 'text' })
