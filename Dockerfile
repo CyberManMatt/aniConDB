@@ -20,7 +20,7 @@ RUN npm install -g @nestjs/cli
 COPY . .
 
 # Compile typescript code
-RUN npm build
+RUN npm run build
 
 # Your app binds to port 8080 so you'll use the EXPOSE instruction to have it mapped by the docker daemon
 EXPOSE 8080
