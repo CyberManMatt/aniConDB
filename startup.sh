@@ -7,4 +7,4 @@ cd "/home/site/wwwroot"
 npm install
 
 # Start the application
-npm start
+npm start:prod
