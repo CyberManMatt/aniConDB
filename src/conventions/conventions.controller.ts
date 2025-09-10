@@ -17,6 +17,8 @@ import { GetConsDto } from './dtos/get-cons.dto';
 import { GetConDetailDto } from './dtos/get-con-detail.dto';
 import { PatchConDto } from './dtos/patch-con.dto';
 import { GetConsQueryDto } from './dtos/get-cons-query.dto';
+import { Auth } from 'src/auth/decorators/auth.decorator';
+import { AuthType } from 'src/auth/enums/auth-type.enum';
 
 @Controller('cons')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -43,6 +45,7 @@ export class ConventionsController {
     return this.conventionsService.createConvention(createConventionDto);
   }
 
+  @Auth(AuthType.None)
   @Get()
   @ApiResponse({
     status: 200,
@@ -55,6 +58,7 @@ export class ConventionsController {
     return this.conventionsService.getConventions(consQuery);
   }
 
+  @Auth(AuthType.None)
   @Get(':id')
   @ApiResponse({
     status: 200,

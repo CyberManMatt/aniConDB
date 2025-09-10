@@ -17,6 +17,8 @@ import { GetHotelsDto } from './dtos/get-hotels.dto';
 import { GetHotelDetailsDto } from './dtos/get-hotel-details.dto';
 import { PatchHotelDto } from './dtos/patch-hotel.dto';
 import { GetHotelsQueryDto } from './dtos/get-hotels-query.dto';
+import { Auth } from 'src/auth/decorators/auth.decorator';
+import { AuthType } from 'src/auth/enums/auth-type.enum';
 
 @Controller('hotels')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -36,6 +38,7 @@ export class HotelsController {
     return this.hotelsService.createHotel(createHotelDto);
   }
 
+  @Auth(AuthType.None)
   @Get()
   @ApiResponse({
     status: 200,
@@ -48,6 +51,7 @@ export class HotelsController {
     return this.hotelsService.getHotels(hotelQuery);
   }
 
+  @Auth(AuthType.None)
   @Get(':id')
   @ApiResponse({
     status: 200,

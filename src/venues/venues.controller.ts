@@ -22,6 +22,8 @@ import {
 import { GetVenuesDto } from './dtos/get-venues.dto';
 import { GetVenueDetailDto } from './dtos/get-venue-detail.dto';
 import { GetVenuesQueryDto } from './dtos/get-venues-query.dto';
+import { Auth } from 'src/auth/decorators/auth.decorator';
+import { AuthType } from 'src/auth/enums/auth-type.enum';
 
 @Controller('venues')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -31,7 +33,6 @@ export class VenuesController {
 
   // The VenuesService can be injected here to handle business logic
   constructor(private readonly venuesService: VenuesService) {}
-
   @ApiBearerAuth()
   @Post()
   @ApiResponse({
@@ -45,6 +46,7 @@ export class VenuesController {
     return this.venuesService.createVenue(createVenueDto);
   }
 
+  @Auth(AuthType.None)
   @Get()
   @ApiOkResponse({
     type: [GetVenuesDto],
@@ -56,6 +58,7 @@ export class VenuesController {
     return this.venuesService.getVenues(venueQuery);
   }
 
+  @Auth(AuthType.None)
   @Get(':id')
   @ApiOkResponse({
     type: GetVenueDetailDto,

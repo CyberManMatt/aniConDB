@@ -12,6 +12,8 @@ import { CreateAdmissionDto } from './dtos/create-admission.dto';
 import { ApiBearerAuth, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { GetAdmissionDetailDto } from './dtos/get-admission-detail.dto';
 import { PatchAdmissionDto } from './dtos/patch-admission.dto';
+import { Auth } from 'src/auth/decorators/auth.decorator';
+import { AuthType } from 'src/auth/enums/auth-type.enum';
 
 @Controller('admissions')
 export class AdmissionsController {
@@ -30,6 +32,7 @@ export class AdmissionsController {
     return this.admissionsService.createAdmission(createAdmissionDto);
   }
 
+  @Auth(AuthType.None)
   @Get(':id')
   @ApiResponse({
     status: 200,

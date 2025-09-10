@@ -17,6 +17,8 @@ import { GetVendorsDto } from './dtos/get-vendors.dto';
 import { GetVendorsQueryDto } from './dtos/get-vendors-query.dto';
 import { GetVendorDetailsDto } from './dtos/get-vendor-details.dto';
 import { PatchVendorDto } from './dtos/patch-vendor.dto';
+import { Auth } from 'src/auth/decorators/auth.decorator';
+import { AuthType } from 'src/auth/enums/auth-type.enum';
 
 @Controller('vendors')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -36,6 +38,7 @@ export class VendorsController {
     return this.vendorsService.createVendor(createVendorDto);
   }
 
+  @Auth(AuthType.None)
   @Get()
   @ApiResponse({
     status: 201,
@@ -51,6 +54,7 @@ export class VendorsController {
     return this.vendorsService.getVendors(vendorsQuery);
   }
 
+  @Auth(AuthType.None)
   @Get(':id')
   @ApiResponse({
     status: 200,
