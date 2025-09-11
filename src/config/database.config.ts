@@ -12,5 +12,5 @@ export default registerAs('database', () => ({
   ssl:
     process.env.DB_SSL_REJECT_UNAUTHORIZED === 'true'
       ? { rejectUnauthorized: true, ca: process.env.DB_SSL_CA }
-      : { rejectUnauthorized: false },
+      : false,
 }));
