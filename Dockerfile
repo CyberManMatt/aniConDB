@@ -13,7 +13,7 @@ COPY package*.json ./
 # If you are building your code for production
 RUN npm ci --only=production
 
-# Install typescript globally in your image
+# Install NestJS CLI globally in your image
 RUN npm install -g @nestjs/cli
 
 # Bundle app source by copying from current directory to the working directory in the container
