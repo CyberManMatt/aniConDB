@@ -8,7 +8,6 @@ import {
   IsPostalCode,
   IsString,
   IsUrl,
-  isURL,
   MaxLength,
   IsOptional,
 } from 'class-validator';
