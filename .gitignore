@@ -57,3 +57,16 @@ pids
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 /.env.development
 http-client.private.env.json
+
+# Certificates
+*.pem
+*.crt
+*.key
+*.cer
+*.cert
+*.pfx
+*.p12
+*.jks
+*.keystore
+*.truststore
+*.der

@@ -18,7 +18,7 @@ export class CreateVenueDto {
 
   @ApiPropertyOptional({ description: 'The address (line 2) of the venue' })
   @IsOptional()
-  address2: string;
+  address2?: string;
 
   @ApiProperty({ description: 'The city of the venue' })
   @IsNotEmpty()
@@ -36,14 +36,14 @@ export class CreateVenueDto {
   @ApiPropertyOptional({ description: 'The phone number of the venue' })
   @IsPhoneNumber('US')
   @IsOptional()
-  phone: string;
+  phone?: string;
 
   @ApiPropertyOptional({ description: 'The website of the venue' })
   @IsOptional()
   @IsUrl()
-  website: string;
+  website?: string;
 
   @ApiPropertyOptional({ description: 'Whether the venue has a food court' })
   @IsOptional()
-  foodCourt: boolean;
+  foodCourt?: boolean;
 }

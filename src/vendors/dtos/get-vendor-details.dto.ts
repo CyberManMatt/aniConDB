@@ -1,4 +1,3 @@
-import { Venue } from 'src/venues/venue.entity';
 import { VendorConsDto } from './vendors-cons.dto';
 import { ApiProperty } from '@nestjs/swagger';
 

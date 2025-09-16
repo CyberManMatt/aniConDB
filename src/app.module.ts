@@ -59,7 +59,6 @@ const ENV = process.env.NODE_ENV;
         username: configService.get('database.username'),
         password: configService.get('database.password'),
         database: configService.get('database.name'),
-        ssl: configService.get('database.ssl'),
       }),
     }),
     HotelsModule,

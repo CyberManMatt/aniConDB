@@ -18,7 +18,7 @@ export class Venue {
   address1: string;
 
   @Column({ nullable: true })
-  address2: string;
+  address2?: string;
 
   @Column()
   city: string;
@@ -30,13 +30,13 @@ export class Venue {
   zip: string;
 
   @Column({ nullable: true })
-  phone: string;
+  phone?: string;
 
   @Column({ nullable: true })
-  website: string;
+  website?: string;
 
   @Column({ nullable: true })
-  foodCourt: boolean;
+  foodCourt?: boolean;
 
   @Exclude()
   @OneToMany(() => Convention, (convention) => convention.venue, {
