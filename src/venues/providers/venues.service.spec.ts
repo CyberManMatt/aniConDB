@@ -10,7 +10,6 @@ describe('VenuesService', () => {
   let service: VenuesService;
 
   beforeEach(async () => {
-
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         VenuesService,
@@ -29,9 +28,7 @@ describe('VenuesService', () => {
     expect(service).toBeDefined();
   });
 
-  
   describe('createVenue', () => {
-
     // Check if the createVenue method is defined
     it('should be defined', () => {
       expect(service.createVenue).toBeDefined();
@@ -69,7 +66,9 @@ describe('VenuesService', () => {
         zip: '12345',
       };
 
-      await expect(service.createVenue(createVenueDto as any)).rejects.toThrow();
+      await expect(
+        service.createVenue(createVenueDto as any),
+      ).rejects.toThrow();
     });
 
     // Check if the createVenue method throws an error when inputting invalid data
@@ -82,13 +81,13 @@ describe('VenuesService', () => {
         zip: 'invalid-zip',
       };
 
-      await expect(service.createVenue(createVenueDto as any)).rejects.toThrow();
+      await expect(
+        service.createVenue(createVenueDto as any),
+      ).rejects.toThrow();
     });
-
   });
 
   describe('getVenues', () => {
-
     // Check if the getVenues method is defined
     it('should be defined', () => {
       expect(service.getVenues).toBeDefined();
@@ -99,7 +98,13 @@ describe('VenuesService', () => {
       const venueQuery = { limit: 10, page: 1 };
       const paginatedVenues = {
         items: [{ id: 1, name: 'Test Venue' }],
-        meta: { totalItems: 1, itemCount: 1, itemsPerPage: 10, totalPages: 1, currentPage: 1 },
+        meta: {
+          totalItems: 1,
+          itemCount: 1,
+          itemsPerPage: 10,
+          totalPages: 1,
+          currentPage: 1,
+        },
       };
 
       const paginationProvider = {
@@ -121,7 +126,16 @@ describe('VenuesService', () => {
     // Check if the getVenues method returns an empty array when no venues exist
     it('should return an empty array when no venues exist', async () => {
       const venueQuery = { limit: 10, page: 1 };
-      const paginatedVenues = { items: [], meta: { totalItems: 0, itemCount: 0, itemsPerPage: 10, totalPages: 0, currentPage: 1 } };
+      const paginatedVenues = {
+        items: [],
+        meta: {
+          totalItems: 0,
+          itemCount: 0,
+          itemsPerPage: 10,
+          totalPages: 0,
+          currentPage: 1,
+        },
+      };
 
       const paginationProvider = {
         paginateQuery: jest.fn().mockResolvedValue(paginatedVenues),
@@ -144,7 +158,13 @@ describe('VenuesService', () => {
       const venueQuery = { limit: 10, page: 1 };
       const paginatedVenues = {
         items: [{ id: 1, name: 'Test Venue' }],
-        meta: { totalItems: 1, itemCount: 1, itemsPerPage: 10, totalPages: 1, currentPage: 1 },
+        meta: {
+          totalItems: 1,
+          itemCount: 1,
+          itemsPerPage: 10,
+          totalPages: 1,
+          currentPage: 1,
+        },
       };
 
       const paginationProvider = {
@@ -168,7 +188,13 @@ describe('VenuesService', () => {
       const venueQuery = { limit: 10, page: 1 };
       const paginatedVenues = {
         items: [{ id: 1, name: 'Test Venue' }],
-        meta: { totalItems: 1, itemCount: 1, itemsPerPage: 10, totalPages: 1, currentPage: 1 },
+        meta: {
+          totalItems: 1,
+          itemCount: 1,
+          itemsPerPage: 10,
+          totalPages: 1,
+          currentPage: 1,
+        },
       };
 
       const paginationProvider = {
@@ -225,13 +251,15 @@ describe('VenuesService', () => {
       };
       (service as any).venueRepository = venueRepository;
 
-      await expect(service.getVenueById(1)).rejects.toThrow('Venue with id 1 not found');
+      await expect(service.getVenueById(1)).rejects.toThrow(
+        'Venue with id 1 not found',
+      );
       expect(venueRepository.findOne).toHaveBeenCalledWith({
         where: { id: 1 },
         relations: ['conventions'],
       });
     });
-  })
+  });
 
   describe('updateVenue', () => {
     // Check if the updateVenue method is defined
@@ -267,7 +295,9 @@ describe('VenuesService', () => {
       const result = await service.updateVenue(1, updateVenueDto);
       expect(venueRepository.findOneBy).toHaveBeenCalledWith({ id: 1 });
       expect(venueRepository.save).toHaveBeenCalledWith(updatedVenue);
-      expect(result).toEqual(expect.objectContaining({ name: 'Updated Venue' }));
+      expect(result).toEqual(
+        expect.objectContaining({ name: 'Updated Venue' }),
+      );
     });
 
     // Check if updateVenue throws NotFoundException when venue not found
@@ -285,7 +315,9 @@ describe('VenuesService', () => {
         zip: '12345',
       };
 
-      await expect(service.updateVenue(1, updateVenueDto)).rejects.toThrow('Venue with id 1 not found');
+      await expect(service.updateVenue(1, updateVenueDto)).rejects.toThrow(
+        'Venue with id 1 not found',
+      );
       expect(venueRepository.findOneBy).toHaveBeenCalledWith({ id: 1 });
     });
 
@@ -314,7 +346,9 @@ describe('VenuesService', () => {
         zip: 'invalid-zip',
       };
 
-      await expect(service.updateVenue(1, updateVenueDto)).rejects.toThrow('Error updating venue: Invalid data');
+      await expect(service.updateVenue(1, updateVenueDto)).rejects.toThrow(
+        'Error updating venue: Invalid data',
+      );
       expect(venueRepository.findOneBy).toHaveBeenCalledWith({ id: 1 });
       expect(venueRepository.save).toHaveBeenCalled();
     });
@@ -348,9 +382,14 @@ describe('VenuesService', () => {
       const result = await service.updateVenue(1, updateVenueDto);
       expect(venueRepository.findOneBy).toHaveBeenCalledWith({ id: 1 });
       expect(venueRepository.save).toHaveBeenCalledWith(mergedVenue);
-      expect(result).toEqual(expect.objectContaining({ name: 'Updated Venue', phone: '123-456-7890' }));
+      expect(result).toEqual(
+        expect.objectContaining({
+          name: 'Updated Venue',
+          phone: '123-456-7890',
+        }),
+      );
     });
-  })
+  });
 
   describe('deleteVenue', () => {
     // Check if the deleteVenue method is defined
@@ -387,8 +426,10 @@ describe('VenuesService', () => {
       };
       (service as any).venueRepository = venueRepository;
 
-      await expect(service.deleteVenue(1)).rejects.toThrow('Venue with id 1 not found');
+      await expect(service.deleteVenue(1)).rejects.toThrow(
+        'Venue with id 1 not found',
+      );
       expect(venueRepository.findOneBy).toHaveBeenCalledWith({ id: 1 });
     });
-  })
+  });
 });
