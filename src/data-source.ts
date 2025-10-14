@@ -10,7 +10,9 @@ const sslOption =
   process.env.DB_SSL_REJECT_UNAUTHORIZED === 'true'
     ? {
         rejectUnauthorized: true,
-        ca: readFileSync(join(process.cwd(), 'certs', 'global-bundle.pem')).toString(),
+        ca: readFileSync(
+          join(process.cwd(), 'certs', 'global-bundle.pem'),
+        ).toString(),
       }
     : false;
 
