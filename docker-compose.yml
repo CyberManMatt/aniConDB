@@ -1,0 +1,10 @@
+services:
+    db:
+        image: postgres:15
+        container_name: postgres_container
+        environment:
+            POSTGRES_USER: anicondbdev
+            POSTGRES_PASSWORD: anicondbdev!
+            POSTGRES_DB: aniConDBDev
+        ports:
+            - "5432:5432"

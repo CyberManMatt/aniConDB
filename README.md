@@ -128,3 +128,38 @@ Open a pull request from your forked repository to the main repository (`origin/
 
 7. Be sure that you are on the `dev` environment
    ![vscode](https://github.com/user-attachments/assets/cc2b790f-a120-470e-b594-1e024148b439)
+
+## Migrations (TypeORM)
+
+This project uses TypeORM's CLI with a project DataSource at `src/data-source.ts`. A helper npm script is provided to run the CLI after building the project.
+
+Key notes:
+- `migration:create` expects a single positional path for the migration file (TypeORM will prefix a timestamp). Example: `src/migrations/InitDB` will create `src/migrations/<timestamp>-InitDB.ts`.
+- `migration:generate` and `migration:run` use the DataSource file path via the `-d`/`--dataSource` option in the npm scripts.
+
+Examples:
+
+Create an empty migration file (timestamp prefixed):
+
+```bash
+npm run migration:create -- src/migrations/InitDB
+```
+
+Generate a migration based on schema differences (requires DS in `src/data-source.ts`):
+
+```bash
+npm run migration:generate -- src/migrations/InitDB
+```
+
+Run pending migrations:
+
+```bash
+npm run migration:run
+```
+
+If you need to provide additional TypeORM CLI flags, pass them after a double-dash (`--`). Example:
+
+```bash
+npm run migration:generate -- src/migrations/InitDB -- -p
+```
+
