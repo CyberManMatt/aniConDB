@@ -12,8 +12,6 @@ COPY . .
 
 RUN npm run build
 
-RUN npm run migration:run
-
 EXPOSE 8080
 
 CMD ["node", "dist/main.js"]
