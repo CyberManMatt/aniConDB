@@ -16,7 +16,7 @@ export default registerAs('database', () => ({
       ? {
           rejectUnauthorized: true,
           ca: readFileSync(
-            join(process.cwd(), 'certs', 'global-bundle.pem'),
+            join(process.cwd(), 'certs', 'DigiCertGlobalRootG2.crt.pem'),
           ).toString(),
         }
       : false,
