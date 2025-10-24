@@ -15,12 +15,7 @@ Clone the forked repository to a local directory or start a GitHub Codespace.
 aniConDB uses PostgresSQL as its database. You can either download the client or run a Docker container. You can use any username, password, and database name. If you wish to use a Docker container, run the script below:
 
 ```bash
-docker run -p 5432:5432 \
-    --name postgres \
-    -e POSTGRES_USER=<username> \
-    -e POSTGRES_PASSWORD=<password> \
-    -e POSTGRES_DB=<database> \
-    postgres
+docker compose up -d
 ```
 
 ### Make a `.env.development` file
