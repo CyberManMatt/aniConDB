@@ -1,10 +1,10 @@
 import 'reflect-metadata';
+import { config } from 'dotenv';
 import { DataSource } from 'typeorm';
 import { join } from 'node:path';
 import { readFileSync } from 'node:fs';
-import * as dotenv from 'dotenv';
 
-dotenv.config();
+config();
 
 const sslOption =
   process.env.DB_SSL_REJECT_UNAUTHORIZED === 'true'

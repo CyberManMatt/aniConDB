@@ -1,0 +1,24 @@
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+footer {
+    scroll-snap-align: end;
+    width: 100%;
+}
+
+#branding, #links, #tos, #social {
+    padding-top: 45px;
+    padding-bottom: 45px;
+}
+
+#copyright {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+ul {
+    list-style-type: none;
+}

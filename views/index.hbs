@@ -1,4 +1,177 @@
+<head>
+  <link rel="stylesheet" href="/css/index.css" />
+</head>
 {{#> layout }}
-  <h1>Welcome to the aniConDB API</h1>
-  <p>Your ultimate anime convention database for cons across the United States.</p>
+  <section id="intro">
+    <div class="container" id="page-header">
+      <div class="mt-4 p-5 bg-primary text-white rounded">
+        <h1>aniConDB API</h1>
+        <p>The ultimate anime, video game, and cosplay convention database for developers!</p>
+        <span>
+          <a href="/getting-started" class="btn btn-dark">
+            <i class="bi bi-exclamation-circle"></i> Get Started
+          </a>
+          <a href="https://github.com/CyberManMatt/aniConDB" target="_blank" class="btn btn-dark">
+            <i class="fa-brands fa-github-alt"></i> GitHub
+          </a>
+        </span>
+      </div>
+    </div>
+    <div class="container">
+      <h2>Fast and quality con data for your application</h2>
+      <p>
+        Integrate aniConDB into your app for quality convention data fast. Are you a traveling con vendor with your own
+        webpage or mobile app? Do you run a con website? Integrate aniConDB into your app to provide your users with the
+        most up-to-date information on upcoming conventions, with live updates on hotel availability, venue details,
+        and more.
+      </p>
+    </div>
+  </section>
+  <section id="features">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card feature-card">
+            <img src="/svg/pages.svg" alt="Pages Image" class="card-img-top feature-icon" />
+            <div class="card-body">
+              <h5 class="card-title feature-title">Paginated Responses</h5>
+              <p class="card-text feature-description">
+                Responses are paginated allowing you to customize the amount of data you receive per call, which
+                increases performance and reduces the load on the server. Also provides a better experience with
+                integrating pagination into your application.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card feature-card">
+            <img src="/svg/community.svg" alt="Community Image" class="card-img-top feature-icon" />
+            <div class="card-body">
+              <h5 class="card-title feature-title">Community Driven</h5>
+              <p class="card-text feature-description">
+                The community drives the aniConDB community. We are always looking for new ideas and ways to
+                improve the API.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card feature-card">
+            <img src="/svg/open-source.svg" alt="Open Source Image" class="card-img-top feature-icon" />
+            <div class="card-body">
+              <h5 class="card-title feature-title">Open Source</h5>
+              <p class="card-text feature-description">
+                The aniConDB API is open source and available on GitHub. We welcome contributions from the community.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card feature-card">
+            <img src="/svg/rest-api.svg" alt="REST API Image" class="card-img-top feature-icon" />
+            <div class="card-body">
+              <h5 class="card-title feature-title">REST API</h5>
+              <p class="card-text feature-description">
+                The aniConDB API is built on the REST architecture. It is straightforward to integrate into your
+                application using any language or framework.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card feature-card">
+            <img src="/svg/programming-languages.svg" alt="Programming Languages Image" class="card-img-top feature-icon" />
+            <div class="card-body">
+              <h5 class="card-title feature-title">Code Versatility</h5>
+              <p class="card-text feature-description">
+                The aniConDB API is built in Node.js using the NestJS framework and is available in JavaScript, Python,
+                and more. Our documentation provides examples for all major programming languages, libraries, and
+                frameworks.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card feature-card">
+            <img src="/img/dashboard-screenshot.png" alt="API Dashboard Image" class="card-img-top feature-icon" />
+            <div class="card-body">
+              <h5 class="card-title feature-title">API Dashboard</h5>
+              <p class="card-text feature-description">
+                The aniConDB API provides a dashboard for developers to view and manage their data. The dashboard
+                provides a simple interface for managing data, including creating, editing, and deleting records.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="data-sources">
+    <div class="container">
+      <h2 class="section-title">Data Sources</h2>
+      <p class="section-description">
+        The aniConDB API provides data from multiple sources. The data is organized into categories, and each category
+        has its own data source.
+      </p>
+      <div class="row">
+        <div class="col data-source">
+          <div class="card text-bg-dark data-source-card">
+            <img src="/img/venue.jpg" alt="Venues Image" class="card-img data-source-img" />
+            <div class="card-img-overlay">
+              <h5 class="card-title">Venues</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col data-source">
+          <div class="card text-bg-dark data-source-card">
+            <img src="/img/hotel.jpg" alt="Hotels Image" class="card-img data-source-img" />
+            <div class="card-img-overlay">
+              <h5 class="card-title">Hotels</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col data-source">
+          <div class="card text-bg-dark data-source-card">
+            <img src="/img/vendor.jpg" alt="Vendors Image" class="card-img data-source-img" />
+            <div class="card-img-overlay">
+              <h5 class="card-title">Vendors</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col data-source">
+          <div class="card text-bg-dark data-source-card">
+            <img src="/img/badge.jpg" alt="Badge/Admission Image" class="card-img data-source-img" />
+            <div class="card-img-overlay">
+              <h5 class="card-title">Badge/Admission</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col data-source">
+          <div class="card text-bg-dark data-source-card">
+            <img src="/img/convention.jpg" alt="Conventions Image" class="card-img data-source-img" />
+            <div class="card-img-overlay">
+              <h5 class="card-title">Conventions</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col data-source">
+          <div class="card text-bg-dark data-source-card">
+            <img src="/img/guest.png" alt="Guests Image" class="card-img data-source-img" />
+            <div class="card-img-overlay">
+              <h5 class="card-title">Guests</h5>
+              <p class="card-text">Coming Soon!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="pricing">
+    <div class="container">
+      <h2>Pricing</h2>
+      <p>Coming Soon!</p>
+    </div>
+  </section>
 {{/layout}}
